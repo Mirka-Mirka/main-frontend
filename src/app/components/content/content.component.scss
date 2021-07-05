@@ -1,0 +1,41 @@
+.content {
+    max-width: 1900px;
+    // margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    height: 70px;
+    padding: 0 35px;
+    box-sizing: border-box;
+    &-left{
+        margin-top: auto;
+        display: block;
+    
+    }
+    &-right{
+        
+    }
+   
+
+  }
+  .content-container {
+    height: 20cm;
+    width: 100%;
+  }
+  .left-form {
+    min-width: 330px;
+    max-width: 370px;
+    border: solid rgb(143, 74, 10) 2px;
+    width: 100%;
+
+
+  }
+  .left-form-field{
+    display : block;
+    padding-bottom: 0 !important;
+  }
+  
+  .left-full-width {
+    width: 100%;
+  }

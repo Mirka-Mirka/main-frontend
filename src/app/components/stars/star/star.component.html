@@ -1,0 +1,10 @@
+<!-- <div>
+    <img src="../../assets/star-full.svg" width="20px" height="20px" alt="colored star">
+    <img src="../../assets/star-empty.svg" width="20px" height="20px" alt="empty star">
+
+</div> -->
+<div *ngIf="condition; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock> <img src="../../assets/star-full.svg" width="20px" height="20px" alt="colored star">
+</ng-template>
+<ng-template #elseBlock><img src="../../assets/star-empty.svg" width="20px" height="20px" alt="empty star">
+</ng-template>
