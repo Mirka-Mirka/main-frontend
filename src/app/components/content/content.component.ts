@@ -17,6 +17,9 @@ export class ContentComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
+  numberOfPerson = new FormControl('person1');
+  numberOfChildren = new FormControl('one');
+  accommondationType  = new FormControl('all');
 
   constructor() {
     const today = new Date();

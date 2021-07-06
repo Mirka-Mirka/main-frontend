@@ -12,10 +12,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldControl} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StarsComponent } from './components/stars/stars.component';
 import { StarComponent } from './components/stars/star/star.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { FormsModule} from '@angular/forms';
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+
+    ReactiveFormsModule
   ],
   providers: [
     MatDatepickerModule,

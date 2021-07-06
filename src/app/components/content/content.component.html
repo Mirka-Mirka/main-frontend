@@ -25,31 +25,39 @@
       </form>
       <form class="left-form">
         <mat-form-field appearance="fill" class="left-form-field">
-          <mat-label>Broj gostiju</mat-label>
-          <mat-select>
-            <mat-option value="one">1 osoba</mat-option>
+          <mat-label>Broj gostiju(odraslih)</mat-label>
+          <mat-select [formControl]="numberOfPerson">
+            <mat-option value="person1">1 osoba</mat-option>
             <mat-option value="two">2 osoba</mat-option>
             <mat-option value="three">3 osoba</mat-option>
+            <mat-option value="four">4 osoba</mat-option>
+            <mat-option value="five">5 osoba</mat-option>
+            <mat-option value="six">6 osoba</mat-option>
+            <mat-option value="seven">7 osoba</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
       <form class="left-form">
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Broj dece</mat-label>
-          <mat-select>
+          <mat-select [formControl]="numberOfChildren">
             <mat-option value="one">bez dece</mat-option>
             <mat-option value="two">1 dete</mat-option>
             <mat-option value="three">2 dece</mat-option>
+            <mat-option value="four">3 deteta</mat-option>
+            <mat-option value="five">4 dece</mat-option>
+            <mat-option value="six">5 dete</mat-option>
+            <mat-option value="seven">6 dece</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
       <form class="left-form">
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Izaberite tip smeštaja</mat-label>
-          <mat-select>
-            <mat-option value="one">Svi tipovi</mat-option>
-            <mat-option value="two">Hotel</mat-option>
-            <mat-option value="three">Vila</mat-option>
+          <mat-select [formControl]="accommondationType">
+            <mat-option value="all">Svi tipovi</mat-option>
+            <mat-option value="hotel">Hotel</mat-option>
+            <mat-option value="villa">Vila</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
