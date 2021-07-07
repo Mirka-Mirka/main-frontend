@@ -7,8 +7,11 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./accommodation-details.component.scss']
 })
 export class AccommodationDetailsComponent implements OnInit {
+  accomodationId: number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { 
+    this.accomodationId = this.route.snapshot.params.id;
+  }
 
   ngOnInit(): void {
   }
