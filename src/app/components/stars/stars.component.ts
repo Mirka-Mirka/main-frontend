@@ -12,31 +12,17 @@ export interface StarsColored {
 })
 export class StarsComponent implements OnInit {
 
-  numArray : StarsColored[] = [
-    { index: 0, state: false },
-    { index: 1, state: false },
-    { index: 2, state: false },
-    { index: 3, state: false },
-    { index: 4, state: false }
-  ];
-  numberOfColoredStar: StarsColored;
+  numArray: number[] = [0, 1, 2, 3, 4];
+  grade: number = -1;
 
   constructor() {
-    this.numberOfColoredStar= { index: -1, state: false }
-   }
+  }
 
   ngOnInit(): void {
   }
 
   onClickStar(clickedItem: number){
-   
-    this.numArray[clickedItem].state = !this.numArray[clickedItem].state; // flips the boolean value for the clicked item
-    
-    for (let item of this.numArray) {
-      if (item == this.numArray[clickedItem]) {
-        item.state = true;
-      }
-    }
+    this.grade = clickedItem;
   }
 
 }

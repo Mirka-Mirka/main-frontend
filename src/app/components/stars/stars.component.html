@@ -1,7 +1,7 @@
 <label>Kategorija smeštaja</label>
-<div class="stars" *ngFor="let number of [0,1,2,3,4];  let i = index" (click)="onClickStar(i)">
-    <!-- <app-star  [(ngModel)]="numberOfColoredStar">{{numberOfColoredStar}}</app-star>   -->
-    <app-star ></app-star>  
+<div class="stars" *ngFor="let number of numArray;  let i = index" (click)="onClickStar(i)" >
+  <img *ngIf="grade < i" src="../../assets/star-empty.svg" width="20px" height="20px" alt="empty star">
+  <img *ngIf="grade >= i" src="../../assets/star-full.svg" width="20px" height="20px" alt="empty star">
 </div>
 
 

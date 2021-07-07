@@ -1,4 +1,8 @@
 .stars{
-    border: 2px crimson solid;
-    display: inline;
+  display: inline;
+  img {
+    vertical-align: bottom;
+    margin-left: 5px;
+    cursor: pointer;
+  }
 }
