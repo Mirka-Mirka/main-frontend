@@ -12,6 +12,9 @@
   }
   &-right {
     flex: 1 1 auto;
+    a {
+      cursor: pointer;
+    }
   }
 }
 .content-container {

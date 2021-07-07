@@ -23,6 +23,7 @@ import {
   MatCheckboxModule
 } from '@angular/material/checkbox';
 import {  MatCardModule}  from '@angular/material/card';
+import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {  MatCardModule}  from '@angular/material/card';
     HomeComponent,
     FooterComponent,
     ContentComponent,
-    StarsComponent
+    StarsComponent,
+    AccommodationDetailsComponent
   ],
   imports: [
     BrowserModule,

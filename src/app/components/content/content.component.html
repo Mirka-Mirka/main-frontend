@@ -66,11 +66,9 @@
       </div>
     </form>
     <div class="content-right">
-      <p class="footer-text">
-        <a class="link footer-link" target="_blank"
-          href="https://www.booking.com/destination/country/rs.sr.html">Booking.com<img
-            src="../../assets/login-link.svg" width="10px" height="10px" alt="external link"></a>
-      </p>
+      <div *ngFor="let result of results">
+        <a (click)="onAccommodationPicked(result)">{{result.name}}</a>
+      </div>
     </div>
   </div>
 </div>

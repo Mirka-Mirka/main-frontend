@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-content',
@@ -10,7 +11,9 @@ export class ContentComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor() {
+  results: {name: string, id: number}[] = [{name: 'first', id: 1}, {name: 'second', id: 2}];
+
+  constructor(public router: Router) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -31,4 +34,7 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public onAccommodationPicked(accommodation: {name: string, id: number}) {
+    this.router.navigate([`/accommodation/${accommodation.id}`, {accommodationName: accommodation.name}]);
+  }
 }
