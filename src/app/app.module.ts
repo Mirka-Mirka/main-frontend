@@ -8,7 +8,7 @@ import { HomeComponent } from './page/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentComponent } from './components/content/content.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { StarsComponent } from './components/stars/stars.component';
 import { StarComponent } from './components/stars/star/star.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
+import {  MatCardModule}  from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -38,10 +40,13 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatCardModule,
+    // MAT_CHECKBOX_CLICK_ACTION,
     ReactiveFormsModule
   ],
   providers: [
+    // {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
+    // {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
     MatDatepickerModule,
     MatNativeDateModule 
   ],

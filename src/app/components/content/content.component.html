@@ -1,16 +1,14 @@
 <div class="content-container">
   <div class="content">
-    <div class="content-left">
-      <p>Pronadji smeštaj</p>
-      <form class="left-form">
+    <form class="left-form" [formGroup]="form">
+      <div class="content-left">
+        <p>Pronadji smeštaj</p>
 
         <mat-form-field class="left-form-field" appearance="fill">
           <mat-label>Upišite željeno odredište</mat-label>
           <input matInput placeholder="Beograd" value="Odredište">
         </mat-form-field>
-      </form>
 
-      <form class="left-form">
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Izaberite period</mat-label>
           <mat-date-range-input [rangePicker]="picker">
@@ -21,9 +19,6 @@
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
-
-      </form>
-      <form class="left-form">
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Broj gostiju(odraslih)</mat-label>
           <mat-select [formControl]="numberOfPerson">
@@ -36,8 +31,8 @@
             <mat-option value="seven">7 osoba</mat-option>
           </mat-select>
         </mat-form-field>
-      </form>
-      <form class="left-form">
+
+
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Broj dece</mat-label>
           <mat-select [formControl]="numberOfChildren">
@@ -50,8 +45,7 @@
             <mat-option value="seven">6 dece</mat-option>
           </mat-select>
         </mat-form-field>
-      </form>
-      <form class="left-form">
+
         <mat-form-field appearance="fill" class="left-form-field">
           <mat-label>Izaberite tip smeštaja</mat-label>
           <mat-select [formControl]="accommondationType">
@@ -60,10 +54,40 @@
             <mat-option value="villa">Vila</mat-option>
           </mat-select>
         </mat-form-field>
-      </form>
-      
-      <app-stars></app-stars>
-    </div>
+
+
+        <app-stars></app-stars>
+
+        <mat-checkbox [formControl]="hideRequiredControl">Marker</mat-checkbox>
+
+
+        <mat-card>
+          <mat-card-content>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin" formControlName="wifi">WiFi</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="pool">Bazen</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="spa">Spa</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="teretana">Teretana</mat-checkbox>
+
+
+            </section>
+
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">Result</h2>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin" [(ngModel)]="wifi">
+                I'm a checkbox
+              </mat-checkbox>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </form>
     <div class="content-right">
       <p class="footer-text">
 

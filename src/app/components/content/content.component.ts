@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-content',
@@ -8,34 +8,62 @@ import {FormGroup, FormControl} from '@angular/forms';
 })
 export class ContentComponent implements OnInit {
 
-  rangesss = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
-  });
+  form: FormGroup;
 
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
-  });
-  numberOfPerson = new FormControl('person1');
-  numberOfChildren = new FormControl('one');
-  accommondationType  = new FormControl('all');
+  // rangesss = new FormGroup({
+  //   start: new FormControl(),
+  //   end: new FormControl()
+  // });
 
-  constructor() {
+  // range = new FormGroup({
+  //   start: new FormControl(),
+  //   end: new FormControl()
+  // });
+
+
+  hideRequiredControl = new FormControl(false);
+  wifi = false;
+  pool = false;
+  spa = false;
+  teretana = false;
+
+
+  constructor(fb: FormBuilder) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
-    this.range = new FormGroup({
+    
+    this.form = new FormGroup({
       start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 15))
-    });
-    this.rangesss = new FormGroup({
-      start: new FormControl(new Date(year, month, 13)),
-      end: new FormControl(new Date(year, month, 15))
-    });
-   }
+      end: new FormControl(new Date(year, month, 15)),
+      numberOfPerson: new FormControl('person1'),
+      numberOfChildren: new FormControl('one'),
+      accommondationType: new FormControl('all'),
+    })
+    // this.range = new FormGroup({
+    //   start: new FormControl(new Date(year, month, 13)),
+    //   end: new FormControl(new Date(year, month, 15))
+    // });
+    // this.rangesss = new FormGroup({
+    //   start: new FormControl(new Date(year, month, 13)),
+    //   end: new FormControl(new Date(year, month, 15))
+    // });
+    // this.options = fb.group({
+    //   hideRequired: this.hideRequiredControl
+    // });
+  }
 
   ngOnInit(): void {
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    this.form = new FormGroup({
+      start: new FormControl(new Date(year, month, 13)),
+      end: new FormControl(new Date(year, month, 15)),
+      numberOfPerson: new FormControl('person1'),
+      numberOfChildren: new FormControl('one'),
+      accommondationType: new FormControl('all'),
+    })
   }
 
 }
