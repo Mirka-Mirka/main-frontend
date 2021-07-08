@@ -20,6 +20,8 @@ import {MatCheckboxModule } from '@angular/material/checkbox';
 import {MatCardModule}  from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
+import { LoginComponent } from './page/login/login.component';
+import { RegistrationComponent } from './page/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AccommodationDetailsComponent } from './page/accommodation-details/acco
     FooterComponent,
     ContentComponent,
     StarsComponent,
-    AccommodationDetailsComponent
+    AccommodationDetailsComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,24 @@
             <div class="title">Izaberi svoj smeštaj</div>
 
         </div>
-        <div class="side">Desno</div>
+        <div class="side">
+            <span class="example-spacer"></span>
+            <div class="divlog" *ngIf="!isLoggedIn">
+                <button mat-raised-button color="primary" (click)="openLoginPage()">Uloguj se</button>
+            </div>
+            <div class="divreg" *ngIf="!isLoggedIn">
+                <button mat-raised-button color="primary" (click)="openRegistrationPage()">Registruj se</button>
+            </div>
+            <div class="divuser" *ngIf="isLoggedIn">
+                <button mat-raised-button color="primary" title="Edit profile">{{username}}</button>
+            </div>
+            <div class="divlout" *ngIf="isLoggedIn">
+                <button mat-raised-button color="primary" (click)="logout()">Izloguj se</button>
+            </div>
+            <!-- <p>Ime -{{username}} </p>
+            <p>Log -{{ulogovaoSe}} </p>
+            <p>Reg -{{registrovaoSe}} </p> -->
+        </div>
     </div>
 </div>
 
