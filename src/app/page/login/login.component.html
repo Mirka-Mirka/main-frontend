@@ -1,15 +1,24 @@
-
-  <h2 class="content-side-left-heading">Za pristup dodatnim informacijama, molimo vas da se logujete</h2>
-  <form class="login-form" [formGroup]="form">
-    <mat-form-field class="left-form-field" appearance="fill">
-        <mat-label>Unesite korisničko ime ili mail</mat-label>
-        <input matInput placeholder="Korisničko ime" value="username"  formControlName="usernameOrEmail">
-      </mat-form-field>
-     <mat-form-field class="left-form-field" appearance="fill">
-        <mat-label>Unesite password</mat-label>
-        <input matInput placeholder="Password" value="Odredište"  formControlName="password">
-      </mat-form-field>
-    <!-- <button [ngClass]="{'button-disabled': form.invalid}"
-            class="button button-gradient-blue button-medium"
-            (click)="onLogin()">ULOGUJ SE</button> -->
-  </form>
+<div class="login-container">
+    <h2 >Za pristup dodatnim informacijama, molimo vas da se logujete</h2>
+    <form class="login-form" [formGroup]="form">
+      <mat-form-field class="login-form-field" appearance="fill">
+          <mat-label>Unesite korisničko ime ili email</mat-label>
+          <input matInput placeholder="Korisničko ime(email)" value="usernameOrEmail">
+        </mat-form-field>
+       <mat-form-field class="login-form-field" appearance="fill">
+          <mat-label>Unesite šifru</mat-label>
+          <!-- <input matInput  inputType="password" placeholder="Šifra" value="password"  formControlName="password"> -->
+  
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Šifra" value="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-flat-button 
+              color="primary" 
+              [ngClass]="{'button-disabled': form.invalid}"
+              class="button button-gradient-blue button-medium"
+              (click)="login(form)">ULOGUJ SE</button>
+    </form>
+</div>
+  

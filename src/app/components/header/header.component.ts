@@ -11,8 +11,6 @@ export class HeaderComponent implements OnInit {
   username: string = "";
   ulogovaoSe: string = "";
   registrovaoSe: string = "";
-  public static adminR: boolean;
-  public static managerR: boolean;
 
   constructor(private router: Router) {
   }

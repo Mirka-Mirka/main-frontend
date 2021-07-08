@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule } from '@angular/material/checkbox';
 import {MatCardModule}  from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
@@ -48,6 +49,7 @@ import { RegistrationComponent } from './page/registration/registration.componen
     MatCardModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule
   ],
   providers: [
