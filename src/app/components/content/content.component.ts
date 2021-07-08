@@ -46,6 +46,7 @@ export class ContentComponent implements OnInit {
   ];
 
 
+  pageSize: number[]=[1];
   results: { name: string, id: number }[] = [{ name: 'Prva stranica', id: 1 }, { name: 'Druga stranica', id: 2 }];
 
   constructor(public router: Router) {

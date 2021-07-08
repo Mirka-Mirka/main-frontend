@@ -25,6 +25,16 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
+        <!-- USER type -->
+        <div class="registration-form-field">
+            <label id="example-radio-group-label">Tip korisnika </label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngFor="let type of userTypes" [value]="type"
+                    (click)="onSelectUserType(type)">
+                    {{type}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
 
         <div *ngIf="addManager == true">
             <!-- PIB -->

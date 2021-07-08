@@ -10,22 +10,35 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
   hide = true;
-  addManager = true;
+  addManager = false;
   uspesnoRegistrovan = false;
+  userType: string = "";
+  userTypes: string[] = ['user', 'manager'];
+
   constructor() {
     this.form = new FormGroup({
-      usernameOrEmail : new FormControl(""),
-      password : new FormControl("")
+      usernameOrEmail: new FormControl(""),
+      password: new FormControl("")
     });
-   }
+  }
 
   ngOnInit(): void {
   }
 
+  onSelectUserType(type: string) {
+    if (type == this.userTypes[1]) {
+      this.addManager = true;
+    } else {
+      this.addManager = false;
+    }
+
+
+  }
+
   register(form: FormGroup) {
     console.log(form);
-     this.uspesnoRegistrovan = true;
-  
-    }
+    this.uspesnoRegistrovan = true;
+
+  }
 
 }

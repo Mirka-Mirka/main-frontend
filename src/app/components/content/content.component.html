@@ -65,6 +65,22 @@
       <div *ngFor="let result of results">
         <a (click)="onAccommodationPicked(result)">{{result.name}}</a>
       </div>
+      <mat-grid-list cols="3" rowHeight="2:1" *ngFor="let page of pageSize">
+         <!--<mat-grid-tile>{{i}}</mat-grid-tile>-->
+         <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+        <mat-grid-tile>5</mat-grid-tile>
+        <mat-grid-tile>6</mat-grid-tile>
+        <mat-grid-tile>7</mat-grid-tile>
+        <mat-grid-tile>8</mat-grid-tile>
+        <mat-grid-tile>9</mat-grid-tile> 
+      </mat-grid-list>
+      <mat-paginator [length]="36"
+      [pageSize]="9"
+      [pageSizeOptions]="[9, 16, 25, 36]">
+      </mat-paginator>
     </div>
   </div>
 </div>

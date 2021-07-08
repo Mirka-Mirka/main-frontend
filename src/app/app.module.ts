@@ -20,6 +20,9 @@ import {MatCheckboxModule } from '@angular/material/checkbox';
 import {MatCardModule}  from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
@@ -50,6 +53,9 @@ import { RegistrationComponent } from './page/registration/registration.componen
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
+    MatRadioModule,
+    MatGridListModule,
+    MatPaginatorModule,
     ReactiveFormsModule
   ],
   providers: [
