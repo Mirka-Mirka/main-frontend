@@ -1,82 +1,106 @@
 <div class="registration-container">
-    <h2>Unesite podatke za registraciju</h2>
-    <form class="registration-form" [formGroup]="form">
-        <!-- FIRST NAME -->
-        <mat-form-field class="registration-form-field" appearance="fill">
-            <mat-label>Ime</mat-label>
-            <input matInput placeholder="Ime" value="firstName">
-        </mat-form-field>
-        <!-- LAST NAME -->
-        <mat-form-field class="registration-form-field" appearance="fill">
-            <mat-label>Prezime</mat-label>
-            <input matInput placeholder="Prezime" value="lastName">
-        </mat-form-field>
-        <!-- EMAIL -->
-        <mat-form-field class="registration-form-field" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="example@email.com" value="email">
-        </mat-form-field>
-        <!-- PASSWORD -->
-        <mat-form-field class="registration-form-field" appearance="fill">
-            <mat-label>Šifra</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" value="Šifra">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-        <!-- USER type -->
-        <div class="registration-form-field">
-            <label id="example-radio-group-label">Tip korisnika </label>
-            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-                <mat-radio-button class="example-radio-button" *ngFor="let type of userTypes" [value]="type"
-                    (click)="onSelectUserType(type)">
-                    {{type}}
-                </mat-radio-button>
-            </mat-radio-group>
-        </div>
+  <h2>Unesite podatke za registraciju</h2>
+  <form class="registration-form" [formGroup]="form">
+    <!-- FIRST NAME -->
+    <mat-form-field class="registration-form-field" appearance="fill">
+      <mat-label>Ime</mat-label>
+      <input matInput placeholder="Ime" formControlName="firstName" />
+    </mat-form-field>
+    <!-- LAST NAME -->
+    <mat-form-field class="registration-form-field" appearance="fill">
+      <mat-label>Prezime</mat-label>
+      <input matInput placeholder="Prezime" formControlName="lastName" />
+    </mat-form-field>
+    <!-- EMAIL -->
+    <mat-form-field class="registration-form-field" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="example@email.com" formControlName="email" />
+    </mat-form-field>
+    <!-- PASSWORD -->
+    <mat-form-field class="registration-form-field" appearance="fill">
+      <mat-label>Šifra</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        placeholder="password"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <!-- USER type -->
+    <div class="registration-form-field">
+      <label id="example-radio-group-label">Tip korisnika </label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let type of userTypes"
+          [value]="type"
+          (click)="onSelectUserType(type)"
 
-        <div *ngIf="addManager == true">
-            <!-- PIB -->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>PIB</mat-label>
-                <input matInput placeholder="PIB" value="pib">
-            </mat-form-field>
-            <!--    CITY -->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>Mesto</mat-label>
-                <input matInput placeholder="Mesto" value="city">
-            </mat-form-field>
-            <!-- STREET-->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>Ulica</mat-label>
-                <input matInput placeholder="Ulica" value="street">
-            </mat-form-field>
-            <!-- COUNTRY-->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>Država</mat-label>
-                <input matInput placeholder="Država" value="country">
-            </mat-form-field>
+        >
+          {{ type }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
 
-            <!-- LATITUDE-->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>Geografska širina</mat-label>
-                <input matInput placeholder="Geografska širina" value="latitude">
-            </mat-form-field>
+    <div *ngIf="addManager == true">
+      <!-- PIB -->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>PIB</mat-label>
+        <input matInput placeholder="PIB" formControlName="pib" />
+      </mat-form-field>
+      <!--    CITY -->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>Mesto</mat-label>
+        <input matInput placeholder="Mesto" formControlName="city" />
+      </mat-form-field>
+      <!-- STREET-->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>Ulica</mat-label>
+        <input matInput placeholder="Ulica" formControlName="street" />
+      </mat-form-field>
+      <!-- COUNTRY-->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>Država</mat-label>
+        <input matInput placeholder="Država" formControlName="country" />
+      </mat-form-field>
 
-            <!-- LONGITUDE-->
-            <mat-form-field class="registration-form-field" appearance="fill">
-                <mat-label>Geografska dužina</mat-label>
-                <input matInput placeholder="Geografska dužina" value="longitude">
-            </mat-form-field>
-            <!-- Dodati lokaciju sa mape
+      <!-- LATITUDE-->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>Geografska širina</mat-label>
+        <input matInput placeholder="Geografska širina" formControlName="latitude" />
+      </mat-form-field>
+
+      <!-- LONGITUDE-->
+      <mat-form-field class="registration-form-field" appearance="fill">
+        <mat-label>Geografska dužina</mat-label>
+        <input matInput placeholder="Geografska dužina" formControlName="longitude" />
+      </mat-form-field>
+      <!-- Dodati lokaciju sa mape
                        <button type="button" md-raised-button color="primary" (click)="openMapAdd()">Set location</button>
             -->
-        </div>
+    </div>
 
-
-        <button mat-flat-button color="primary" [ngClass]="{'button-disabled': form.invalid}"
-            class="button button-gradient-blue button-medium" (click)="register(form)">REGISTRUJ SE</button>
-    </form>
-
+    <button
+      mat-flat-button
+      color="primary"
+      [ngClass]="{ 'button-disabled': form.invalid }"
+      class="button button-gradient-blue button-medium"
+      (click)="register()"
+    >
+      REGISTRUJ SE
+    </button>
+    <a (click)="openLoginPage()">Registruj se</a>
+  </form>
 </div>

@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
+import {RegistrationModel} from "../../models/registration.model";
+import {UserRole} from "../../models/user.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-registration',
@@ -11,14 +16,20 @@ export class RegistrationComponent implements OnInit {
   form: FormGroup;
   hide = true;
   addManager = false;
-  uspesnoRegistrovan = false;
-  userType: string = "";
   userTypes: string[] = ['user', 'manager'];
 
-  constructor() {
+  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService) {
     this.form = new FormGroup({
-      usernameOrEmail: new FormControl(""),
-      password: new FormControl("")
+      firstName: new FormControl(""),
+      lastName: new FormControl(""),
+      email: new FormControl(""),
+      password: new FormControl(""),
+      pib: new FormControl(""),
+      city: new FormControl(""),
+      street: new FormControl(""),
+      country: new FormControl(""),
+      latitude: new FormControl(""),
+      longitude: new FormControl(""),
     });
   }
 
@@ -31,14 +42,38 @@ export class RegistrationComponent implements OnInit {
     } else {
       this.addManager = false;
     }
-
-
   }
 
-  register(form: FormGroup) {
-    console.log(form);
-    this.uspesnoRegistrovan = true;
-
+  private convertFromFormToRegistrationModel() : RegistrationModel {
+    const user = this.form.value;
+    return new RegistrationModel({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      role: this.addManager ? UserRole.AGENT : UserRole.USER,
+      pib: user.pib,
+      city: user.city,
+      street: user.street,
+      country: user.country,
+      latitude: user.latitude,
+      longitude: user.longitude,
+    })
   }
 
+  register() {
+    const userRegistrationData = this.convertFromFormToRegistrationModel();
+    console.log(this.form);
+    this.authService.registration(userRegistrationData).subscribe((res) => {
+      if (res !== false) {
+        this.router.navigate(['/home']);
+      } else {
+        this.toastr.error('Neuspesno');
+      }
+    });
+  }
+
+  openLoginPage() {
+    this.router.navigate([`/login`]);
+  }
 }

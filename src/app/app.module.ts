@@ -26,6 +26,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
+import { HttpClientModule } from "@angular/common/http";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -56,11 +58,13 @@ import { RegistrationComponent } from './page/registration/registration.componen
     MatRadioModule,
     MatGridListModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   bootstrap: [AppComponent]
 })

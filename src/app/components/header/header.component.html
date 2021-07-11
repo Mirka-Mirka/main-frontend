@@ -8,16 +8,16 @@
         </div>
         <div class="side">
             <span class="example-spacer"></span>
-            <div class="divlog" *ngIf="!isLoggedIn">
+            <div class="divlog" *ngIf="token === null && navigationEnd === '/home'">
                 <button mat-raised-button color="primary" (click)="openLoginPage()">Uloguj se</button>
             </div>
-            <div class="divreg" *ngIf="!isLoggedIn">
+            <div class="divreg" *ngIf="token === null && navigationEnd === '/home'">
                 <button mat-raised-button color="primary" (click)="openRegistrationPage()">Registruj se</button>
             </div>
-            <div class="divuser" *ngIf="isLoggedIn">
-                <button mat-raised-button color="primary" title="Edit profile">{{username}}</button>
+            <div class="divuser" *ngIf="token != null">
+                <button mat-raised-button color="primary" title="Edit profile">{{user?.email}}</button>
             </div>
-            <div class="divlout" *ngIf="isLoggedIn">
+            <div class="divlout" *ngIf="token != null">
                 <button mat-raised-button color="primary" (click)="logout()">Izloguj se</button>
             </div>
             <!-- <p>Ime -{{username}} </p>

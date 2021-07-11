@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserModel } from 'src/app/models/user.model';
+import { Router } from "@angular/router";
+import { LoginModel } from "../../models/login.model";
+import { AuthService } from "../../services/auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -11,9 +14,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   hide = true;
-  uspesnoLogovan = false;
 
-  constructor() {
+  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService) {
     this.form = new FormGroup({
       usernameOrEmail: new FormControl(""),
       password: new FormControl("")
@@ -25,13 +27,22 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.form);
-    this.uspesnoLogovan = true;
-    const user= this.convertFromFormToAccommondationModel();
+    const userLoginData = this.convertFromFormToLoginModel();
+    this.authService.login(userLoginData).subscribe((res) => {
+      if (res !== false) {
+        this.router.navigate(['/home']);
+      } else {
+        this.toastr.error('Neuspesno');
+      }
+    });
   }
 
-  private convertFromFormToAccommondationModel() : UserModel { 
+  openRegistrationPage() {
+    this.router.navigate([`/registration`]);
+  }
+
+  private convertFromFormToLoginModel() : LoginModel {
       const user = this.form.value;
-      return new UserModel({email: user.email , password: user.password})
+      return new LoginModel({email: user.usernameOrEmail , password: user.password})
   }
-
 }

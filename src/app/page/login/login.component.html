@@ -3,22 +3,21 @@
     <form class="login-form" [formGroup]="form">
       <mat-form-field class="login-form-field" appearance="fill">
           <mat-label>Unesite korisničko ime ili email</mat-label>
-          <input matInput placeholder="Korisničko ime(email)" value="usernameOrEmail">
+          <input matInput placeholder="Korisničko ime(email)" formControlName="usernameOrEmail">
         </mat-form-field>
        <mat-form-field class="login-form-field" appearance="fill">
           <mat-label>Unesite šifru</mat-label>
-          <!-- <input matInput  inputType="password" placeholder="Šifra" value="password"  formControlName="password"> -->
-  
-          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Šifra" value="password">
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Šifra" formControlName="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
-        <button mat-flat-button 
-              color="primary" 
+        <button mat-flat-button
+              color="primary"
               [ngClass]="{'button-disabled': form.invalid}"
               class="button button-gradient-blue button-medium"
-              (click)="login()">ULOGUJ SE</button>
+              (click)="login()">LOGINUJ SE</button>
+      <a (click)="openRegistrationPage()">Registruj se</a>
     </form>
 </div>
-  
+

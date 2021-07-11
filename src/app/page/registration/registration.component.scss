@@ -1,15 +1,35 @@
-.registration-container{
-    margin: 70px;
-    padding: 90px;
+.registration-container {
+  margin: 70px;
+  padding: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.registration-form{
-    align-content: center;
+.registration-form {
+  align-content: center;
+  width: 500px;
 
-    &-field{
-        margin-top: auto;
-        display: block;
-    }
+  &-field {
+    margin-top: auto;
+    display: block;
+  }
 }
 .mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
-  }
+  margin-left: 16px;
+}
+h2 {
+  width: 500px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+a {
+  color: rgb(63, 81, 181);
+  cursor: pointer;
+}
+
+div.registration-form-field {
+  margin-bottom: 15px;
+}

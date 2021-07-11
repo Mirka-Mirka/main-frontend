@@ -1,12 +1,28 @@
-.login-container{
-    margin: 70px;
-    padding: 90px;
+.login-container {
+  margin: 70px;
+  padding: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.login-form{
-    align-content: center;
+.login-form {
+  align-content: center;
+  width: 500px;
 
-    &-field{
-        margin-top: auto;
-        display: block;
-    }
+  &-field {
+    margin-top: auto;
+    display: block;
+  }
+}
+h2 {
+  width: 500px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+a {
+  color: rgb(63, 81, 181);
+  cursor: pointer;
 }
