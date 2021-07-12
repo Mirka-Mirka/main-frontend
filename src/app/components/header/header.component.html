@@ -15,7 +15,7 @@
                 <button mat-raised-button color="primary" (click)="openRegistrationPage()">Registruj se</button>
             </div>
             <div class="divuser" *ngIf="token != null">
-                <button mat-raised-button color="primary" title="Edit profile">{{user?.email}}</button>
+                <button mat-raised-button color="primary" title="Edit profile">{{user?.username}}</button>
             </div>
             <div class="divlout" *ngIf="token != null">
                 <button mat-raised-button color="primary" (click)="logout()">Izloguj se</button>

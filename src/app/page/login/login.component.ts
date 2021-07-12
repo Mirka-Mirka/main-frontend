@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.form);
     const userLoginData = this.convertFromFormToLoginModel();
     this.authService.login(userLoginData).subscribe((res) => {
       if (res !== false) {
@@ -43,6 +42,6 @@ export class LoginComponent implements OnInit {
 
   private convertFromFormToLoginModel() : LoginModel {
       const user = this.form.value;
-      return new LoginModel({email: user.usernameOrEmail , password: user.password})
+      return new LoginModel({usernameOrEmail: user.usernameOrEmail , password: user.password})
   }
 }

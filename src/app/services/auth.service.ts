@@ -50,13 +50,13 @@ export class AuthService {
   }
 
   login(loginData: LoginModel) {
-    return this.http.post<any>(`${baseURL}/authenticate`, loginData).pipe(
+ 
+    return this.http.post<any>(`${baseURL}/auth/login`, loginData).pipe(
       tap((data) => {
-        localStorage.setItem('token', JSON.stringify(data.token));
-        localStorage.setItem('currentUser', JSON.stringify(data.userInfo));
-        this.currentTokenSubject.next(data.token);
-        this.currentTokenUserInfo.next(data.userInfo);
-        this.updateNotifications.emit(true);
+        localStorage.setItem('token', JSON.stringify(new Token({type: data.tokenType, value: data.accessToken})));
+        localStorage.setItem('currentUser', JSON.stringify(new UserModel( {username: data.username, role: data.role})));
+        this.currentTokenSubject.next(new Token({type: data.tokenType, value: data.accessToken}));
+        this.currentTokenUserInfo.next(new UserModel( {username: data.username, role: data.role}));
       }),
       catchError((error) => {
         this.toastr.error(error, 'Error!');
@@ -66,9 +66,12 @@ export class AuthService {
   }
 
   public registration(registrationData: RegistrationModel) {
-    return this.http.post<any>(`${baseURL}/companies`, registrationData)
+
+    return this.http.post<any>(`${baseURL}/auth/register`, registrationData)
       .pipe(
-        tap(() => {}),
+        tap((data) => {
+          console.log("results "+data.id);
+        }),
         catchError(error => {
           this.toastr.error(error, 'Error!');
           return of(false);

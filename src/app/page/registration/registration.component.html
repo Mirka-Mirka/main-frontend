@@ -11,6 +11,11 @@
       <mat-label>Prezime</mat-label>
       <input matInput placeholder="Prezime" formControlName="lastName" />
     </mat-form-field>
+    <!-- USERNAME -->
+    <mat-form-field class="registration-form-field" appearance="fill">
+      <mat-label>Korisničko ime</mat-label>
+      <input matInput placeholder="Korisničko ime" formControlName="username" />
+    </mat-form-field>
     <!-- EMAIL -->
     <mat-form-field class="registration-form-field" appearance="fill">
       <mat-label>Email</mat-label>
@@ -19,36 +24,18 @@
     <!-- PASSWORD -->
     <mat-form-field class="registration-form-field" appearance="fill">
       <mat-label>Šifra</mat-label>
-      <input
-        matInput
-        [type]="hide ? 'password' : 'text'"
-        placeholder="password"
-        formControlName="password"
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-      >
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password" />
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
     </mat-form-field>
     <!-- USER type -->
     <div class="registration-form-field">
       <label id="example-radio-group-label">Tip korisnika </label>
-      <mat-radio-group
-        aria-labelledby="example-radio-group-label"
-        class="example-radio-group"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let type of userTypes"
-          [value]="type"
-          (click)="onSelectUserType(type)"
-
-        >
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+        <mat-radio-button class="example-radio-button" *ngFor="let type of userTypes" [value]="type"
+          (click)="onSelectUserType(type)">
           {{ type }}
         </mat-radio-button>
       </mat-radio-group>
@@ -92,13 +79,8 @@
             -->
     </div>
 
-    <button
-      mat-flat-button
-      color="primary"
-      [ngClass]="{ 'button-disabled': form.invalid }"
-      class="button button-gradient-blue button-medium"
-      (click)="register()"
-    >
+    <button mat-flat-button color="primary" [ngClass]="{ 'button-disabled': form.invalid }"
+      class="button button-gradient-blue button-medium" (click)="register()">
       REGISTRUJ SE
     </button>
     <a (click)="openLoginPage()">Registruj se</a>

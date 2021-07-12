@@ -5,14 +5,15 @@ export enum UserRole {
 
 export class UserModel {
     public id?: number;
-    public email: string;
+    public email?: string;
     public role: UserRole;
-    public password: string;
+    public username: string;
+
 
     constructor(params: UserModel){
         this.id = params.id;
         this.role = params.role;
         this.email = params.email;
-        this.password = params.password;
+        this.username = params.username;
     }
 }

@@ -5,19 +5,21 @@ export class RegistrationModel {
   lastName: string;
   email: string;
   password: string;
-  role: UserRole;
-  pib: string;
-  city: string;
-  street: string;
-  country: string;
-  latitude: string;
-  longitude: string;
+  username: string;
+  role?: UserRole;
+  pib?: string;
+  city?: string;
+  street?: string;
+  country?: string;
+  latitude?: string;
+  longitude?: string;
 
   constructor(params: RegistrationModel){
     this.firstName = params.firstName;
     this.lastName = params.lastName;
     this.email = params.email;
     this.password = params.password;
+    this.username = params.username;
     this.role = params.role;
     this.pib = params.pib;
     this.city = params.city;
