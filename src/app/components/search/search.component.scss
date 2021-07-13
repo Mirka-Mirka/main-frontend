@@ -1,0 +1,27 @@
+.content-left {
+    margin-top: auto;
+    display: block;
+}
+.left-form {
+    min-width: 330px;
+    max-width: 370px;
+    border-right: 1px solid #dddddd;
+    width: 100%;
+    &-field{
+        display: block;
+    padding-bottom: 0 !important;
+    }
+}
+.left-full-width {
+    width: 100%;
+}
+.checkbox-section {
+    margin-top: 10px;
+    .checkbox-margin {
+        margin-right: 10px;
+    }
+}
+.search {
+    font-size: 14px;
+    min-width: 150px;
+}

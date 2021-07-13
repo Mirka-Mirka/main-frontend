@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
     const currentToken = this.authService.currentTokenValue;
     const date = new Date().toISOString();
     if (currentToken){
+      this.authService.logout();
       return true;
     } else{
       this.router.navigate(['/login']);

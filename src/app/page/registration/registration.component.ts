@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
     this.form = new FormGroup({
       firstName: new FormControl(""),
       lastName: new FormControl(""),
+      username: new FormControl(""),
       email: new FormControl(""),
       password: new FormControl(""),
       pib: new FormControl(""),
@@ -51,24 +52,24 @@ export class RegistrationComponent implements OnInit {
       lastName: user.lastName,
       email: user.email,
       password: user.password,
-      role: this.addManager ? UserRole.AGENT : UserRole.USER,
-      pib: user.pib,
-      city: user.city,
-      street: user.street,
-      country: user.country,
-      latitude: user.latitude,
-      longitude: user.longitude,
+      username: user.username,
+      // role: this.addManager ? UserRole.AGENT : UserRole.USER,
+      // pib: user.pib,
+      // city: user.city,
+      // street: user.street,
+      // country: user.country,
+      // latitude: user.latitude,
+      // longitude: user.longitude,
     })
   }
 
   register() {
     const userRegistrationData = this.convertFromFormToRegistrationModel();
-    console.log(this.form);
     this.authService.registration(userRegistrationData).subscribe((res) => {
       if (res !== false) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       } else {
-        this.toastr.error('Neuspesno');
+        this.toastr.error('Neuspešna registracija!');
       }
     });
   }

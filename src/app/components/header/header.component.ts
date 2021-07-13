@@ -2,6 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UserModel } from '../../models/user.model';
 import { filter } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   user: UserModel | null = null;
   navigationEnd = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {
     const currentUser = localStorage.getItem('currentUser');
@@ -29,10 +30,14 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.token = localStorage.getItem('token');
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       this.user = JSON.parse(currentUser);
+    }
+  
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.token = JSON.parse(token);
     }
   }
 
@@ -45,8 +50,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   logout() {
-    // this.authService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(['/home']);
     this.token = null;
   }
 }
