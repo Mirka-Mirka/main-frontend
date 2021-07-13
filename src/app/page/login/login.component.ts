@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       if (res !== false) {
         this.router.navigate(['/home']);
       } else {
-        this.toastr.error('Neuspesno');
+        this.toastr.error('Neuspešno prijavljivanje!');
       }
     });
   }

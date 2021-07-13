@@ -28,6 +28,8 @@ import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ToastrModule } from "ngx-toastr";
+import { SearchComponent } from './components/search/search.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ToastrModule } from "ngx-toastr";
     StarsComponent,
     AccommodationDetailsComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    SearchComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,61 @@
+<form class="left-form" [formGroup]="form">
+    <div class="content-left">
+        <p>Pronadji smeštaj</p>
+
+        <!-- LOCATION -->
+        <mat-form-field class="left-form-field" appearance="fill">
+            <mat-label>Upišite željeno odredište</mat-label>
+            <input matInput #location placeholder="Odredište">
+        </mat-form-field>
+        <!-- PERIOD -->
+        <mat-form-field appearance="fill" class="left-form-field">
+            <mat-label>Izaberite period</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Datum prijavljivanja">
+                <input matEndDate placeholder="Datum odjavljivanja">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <!-- ADULTS-->
+        <mat-form-field appearance="fill" class="left-form-field">
+            <mat-label>Broj gostiju(odraslih)</mat-label>
+            <mat-select formControlName="numberOfPerson" [(value)]="personNumberMenu[0].id">
+                <div *ngFor="let person of personNumberMenu">
+                    <mat-option [value]="person.id">{{person.name}}</mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
+        <!-- CHILDREN -->
+        <mat-form-field appearance="fill" class="left-form-field">
+            <mat-label>Broj dece</mat-label>
+            <mat-select formControlName="numberOfChildren" [(value)]="childrenNumberMenu[0].id">
+                <div *ngFor="let child of childrenNumberMenu">
+                    <mat-option [value]="child.id">{{child.name}}</mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
+        <!-- ACCOMMODATION TYPE -->
+        <mat-form-field appearance="fill" class="left-form-field">
+            <mat-label>Izaberite tip smeštaja</mat-label>
+            <mat-select formControlName="accommondationType">
+                <div *ngFor="let type of accommodationTypeMenu">
+                    <mat-option [value]="type.id">{{type.name}}</mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
+        <!-- STARS -->
+        <app-stars></app-stars>
+        <!-- ADDITIONS -->
+        <section class="checkbox-section">
+            <mat-checkbox class="checkbox-margin" formControlName="wifi">WiFi</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="pool">Bazen</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="spa">Spa</mat-checkbox>
+            <mat-checkbox class="checkbox-margin" formControlName="gym">Teretana</mat-checkbox>
+        </section>
+
+        <div class="search checkbox-section">
+            <button mat-raised-button color="primary" (click)=" onSubmitSearh()">Pretraži</button>
+        </div>
+    </div>
+</form>

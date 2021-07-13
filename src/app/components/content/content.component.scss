@@ -6,46 +6,8 @@
   height: 100%;
   padding: 0 35px;
   box-sizing: border-box;
-  &-left {
-    margin-top: auto;
-    display: block;
-  }
-  &-right {
-    flex: 1 1 auto;
-    a {
-      cursor: pointer;
-    }
-  }
 }
 .content-container {
   width: 100%;
   height: 100%;
-}
-.left-form {
-  min-width: 330px;
-  max-width: 370px;
-  border-right: 1px solid #dddddd;
-  width: 100%;
-}
-.left-form-field {
-  display: block;
-  padding-bottom: 0 !important;
-}
-mat-grid-tile {
-  background: lightblue;
-}
-
-.left-full-width {
-  width: 100%;
-}
-.example-section {
-  margin-top: 10px;
-  .example-margin {
-    margin-right: 10px;
-  }
-}
-.search{
-    font-size: 14px;
-    min-width: 150px;
-
 }

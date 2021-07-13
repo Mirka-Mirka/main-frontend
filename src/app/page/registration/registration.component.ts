@@ -69,7 +69,7 @@ export class RegistrationComponent implements OnInit {
       if (res !== false) {
         this.router.navigate(['/login']);
       } else {
-        this.toastr.error('Neuspesno');
+        this.toastr.error('Neuspešna registracija!');
       }
     });
   }
