@@ -1,9 +1,32 @@
 .content-right {
-    flex: 1 1 auto;
+    flex-grow: 2;
     a {
         cursor: pointer;
     }
 }
-mat-grid-tile {
-    background: lightblue;
+.content-results {
+    display: flex;
+    flex-direction: column;
+    .item {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+.acc-img {
+    width: 300px;
+}
+.acc-name {
+    font-weight: 800;
+    font-size: large;
+    font-style: italic;
+}
+.acc-descriptions {
+    padding: 20px;
+    text-align: justify;
+}
+.price {
+    padding-top: 18px;
+}
+.image{
+    margin: 15px;
 }

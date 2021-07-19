@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccommodationModel } from 'src/app/models/accommodation.model';
+import { AccommodationService } from 'src/app/services/accommodation.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-table',
@@ -7,15 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-
-  constructor(public router: Router) { }
   pageSize: number[] = [1];
-  results: { name: string, id: number }[] = [{ name: 'Prva stranica', id: 1 }, { name: 'Druga stranica', id: 2 }];
+  results: AccommodationModel[] =[];
+
+  constructor(public router: Router, private accomodationService: AccommodationService, private toastr: ToastrService){
+    this.accomodationService.getAccommodations().subscribe((data) => {
+      console.log(data);
+      
+      if (data !== false) {
+        this.results = data;
+        this.router.navigate(['/home']);
+      } else {
+        this.toastr.error('Neuspešno prijavljivanje!');
+      }
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  public onAccommodationPicked(accommodation: { name: string, id: number }) {
+  public onAccommodationPicked(accommodation: AccommodationModel) {
     this.router.navigate([`/accommodation/${accommodation.id}`, { accommodationName: accommodation.name }]);
   }
 

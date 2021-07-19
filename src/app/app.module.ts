@@ -23,6 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
@@ -62,6 +64,8 @@ import { TableComponent } from './components/table/table.component';
     MatRadioModule,
     MatGridListModule,
     MatPaginatorModule,
+    MatDividerModule,
+    MatListModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot()

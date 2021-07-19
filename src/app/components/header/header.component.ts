@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event) => {
         console.log(event);
-        this.navigationEnd = event.url;
+        this.navigationEnd = event.urlAfterRedirects;
       });
   }
 
