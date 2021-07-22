@@ -1,0 +1,46 @@
+.spoljasnji-div {
+    margin: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    width: 840px;
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: xx-large;
+        font-style: italic;
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+    .slider-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .description-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 840px; 
+        // margin:0; 
+        padding: 20px 0px;
+        text-align: justify;
+    }
+    .description {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .price {
+        display: flex;
+        align-items: center;
+    }
+    .acc-text{
+        display: flex;
+        align-items: center;
+    }
+    .adressa-content{
+        padding-bottom: 20px;
+    }
+ }

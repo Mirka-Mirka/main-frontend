@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
   }
 
   public onAccommodationPicked(accommodation: AccommodationModel) {
-    this.router.navigate([`/accommodation/${accommodation.id}`, { accommodationName: accommodation.name }]);
+    this.router.navigate([`/accommodation/${accommodation.id}`]);
   }
 
 }

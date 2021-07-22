@@ -1,1 +1,59 @@
-<p>Detaljni prikaz smestaja broj {{accomodationId}}</p>
+<div class="spoljasnji-div">  <div class="title" *ngIf="accommodationDetails!=null">
+    <mat-list role="list">
+      <mat-list-item role="listitem" class="title">{{accommodationDetails?.name}}&nbsp;&nbsp;&nbsp;
+        <div class="stars" *ngFor="let number of [1,2,3,4,5]">
+          <img *ngIf="accommodationDetails.stars < number" src="../../assets/star-empty.svg" width="20px" height="20px"
+            alt="empty star">
+          <img *ngIf="accommodationDetails.stars >= number" src="../../assets/star-full.svg" width="20px" height="20px"
+            alt="empty star">
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="slider-div">
+    <div style="width: 840px; text-align:center;margin:0; padding:0;">
+      <ng-image-slider #nav *ngIf="imageObject" [images]="imageObject" [infinite]="false" [autoSlide]="1"
+        [imageSize]="{width: '25%', height: 200}" slideImage="1"></ng-image-slider>
+    </div>
+  </div>
+  <div class="description-content">
+    <div>{{accommodationDetails?.description}}</div>
+  </div>
+
+  <div class="adressa-content">
+    <div class="acc-text">
+      <span>Ulica&nbsp;</span>
+      <div>{{accommodationDetails?.address?.street}}</div>
+    </div>
+    <div class="acc-text">
+      <span>Grad&nbsp;</span>
+      <div>{{accommodationDetails?.address?.city}}</div>
+    </div>
+    <div class="acc-text">
+      <span>Država&nbsp;</span>
+      <div>{{accommodationDetails?.address?.country}}</div>
+    </div>
+    <div class="acc-text">
+      <span>Koordinate&nbsp;</span>
+      <div>{{accommodationDetails?.address?.latitude}}-{{accommodationDetails?.address?.longitude}}</div>
+    </div>
+    <div class="google-map-style">
+      <google-map >
+        <!-- [options]="mapOptions"<map-marker [position]="marker.position"></map-marker> -->
+      </google-map>
+    </div>
+  </div>
+  <div class="price">Cena&nbsp;<span style="font-weight: bold;">{{accommodationDetails?.price}}</span>&nbsp;EU</div>
+  <div class="acc-text">
+    <span>Max broj ljudi u smeštaju&nbsp;</span>
+    <div>{{accommodationDetails?.numberOfPeople}}</div>
+  </div>
+  <div class="acc-text">
+    <div>{{accommodationDetails?.numberOfCancellationDays}}</div>
+    <span>&nbsp;dana pre rezervisanog termina je moguće otkazati smeštaj</span>
+  </div>
+  <div class="acc-text">
+    <span>Broj agenta&nbsp;</span>
+    <div>{{accommodationDetails?.agentId}}</div>
+  </div>
+</div>

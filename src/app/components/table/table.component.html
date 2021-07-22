@@ -1,12 +1,9 @@
 <div class="content-right">
-    <!-- <div *ngFor="let result of results">
-      <a (click)="onAccommodationPicked(result)">{{result.name}}</a>
-    </div> -->
     <div class='content-results'>
       <div class='item' *ngFor="let item of results">
         <div class='image'>
           <a (click)="onAccommodationPicked(item)">
-            <img mat-card-image class="acc-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image class="acc-img" src="{{item.imageUrls[0]}}" alt="Photo of accomodation">
           </a>
         </div>
         <mat-divider></mat-divider>
