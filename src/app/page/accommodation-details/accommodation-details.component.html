@@ -1,4 +1,5 @@
-<div class="spoljasnji-div">  <div class="title" *ngIf="accommodationDetails!=null">
+<div class="spoljasnji-div">
+  <div class="title" *ngIf="accommodationDetails!=null">
     <mat-list role="list">
       <mat-list-item role="listitem" class="title">{{accommodationDetails?.name}}&nbsp;&nbsp;&nbsp;
         <div class="stars" *ngFor="let number of [1,2,3,4,5]">
@@ -10,50 +11,61 @@
       </mat-list-item>
     </mat-list>
   </div>
-  <div class="slider-div">
-    <div style="width: 840px; text-align:center;margin:0; padding:0;">
-      <ng-image-slider #nav *ngIf="imageObject" [images]="imageObject" [infinite]="false" [autoSlide]="1"
-        [imageSize]="{width: '25%', height: 200}" slideImage="1"></ng-image-slider>
-    </div>
-  </div>
-  <div class="description-content">
-    <div>{{accommodationDetails?.description}}</div>
-  </div>
+  <div class="content-div">
+    <div class="column1 ">
+      <div >
+        <div class="price">Cena: &nbsp;<span style="font-weight: bold;">{{accommodationDetails?.price}},00</span>&nbsp;EUR /
+          dan</div>
+        <div class="acc-text-max">
+          <span>Max broj ljudi: &nbsp;</span>
+          <div>{{accommodationDetails?.numberOfPeople}}</div>
+        </div>
+        <div class="acc-text-cancel">
+          <span>Otkazivanje: </span>
+          <span>{{accommodationDetails?.numberOfCancellationDays}}</span>
+          <span>&nbsp;dana unapred</span>
+        </div>
+        <div *ngIf="hasCoord" class="acc-map-right">
+          <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="zoom">
+            <agm-marker [latitude]="mapLat" [longitude]="mapLng"></agm-marker>
+          </agm-map>
+        </div>
 
-  <div class="adressa-content">
-    <div class="acc-text">
-      <span>Ulica&nbsp;</span>
-      <div>{{accommodationDetails?.address?.street}}</div>
+        <div class="adressa-content">
+          <div class="acc-text">
+            <span>Ulica:&nbsp;</span>
+            <span class="acc-data">{{accommodationDetails?.address?.street}}</span>
+          </div>
+          <div class="acc-text">
+            <span>Grad:&nbsp;</span>
+            <span class="acc-data">{{accommodationDetails?.address?.city}}</span>
+          </div>
+          <div class="acc-text">
+            <span>Država:&nbsp;</span>
+            <span class="acc-data">{{accommodationDetails?.address?.country}}</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="acc-text">
-      <span>Grad&nbsp;</span>
-      <div>{{accommodationDetails?.address?.city}}</div>
+    <div class="column2">
+      <div class="slider-div">
+        <div style="width: 400px; text-align:center;margin:0; padding:0;">
+          <ng-image-slider #nav *ngIf="imageObject" [images]="imageObject" [infinite]="false" [autoSlide]="1"
+            slideImage="1" [manageImageRatio]="true" [imageSize]="{height: 400}"></ng-image-slider>
+        </div>
+      </div>
     </div>
-    <div class="acc-text">
-      <span>Država&nbsp;</span>
-      <div>{{accommodationDetails?.address?.country}}</div>
-    </div>
-    <div class="acc-text">
-      <span>Koordinate&nbsp;</span>
-      <div>{{accommodationDetails?.address?.latitude}}-{{accommodationDetails?.address?.longitude}}</div>
-    </div>
-    <div class="google-map-style">
-      <google-map >
-        <!-- [options]="mapOptions"<map-marker [position]="marker.position"></map-marker> -->
-      </google-map>
+    <div class="column3">
+      <div class="acc-text">
+        <span>Broj agenta:&nbsp;</span>
+        <div class="acc-data">{{accommodationDetails?.agentId}}</div>
+      </div>
     </div>
   </div>
-  <div class="price">Cena&nbsp;<span style="font-weight: bold;">{{accommodationDetails?.price}}</span>&nbsp;EU</div>
-  <div class="acc-text">
-    <span>Max broj ljudi u smeštaju&nbsp;</span>
-    <div>{{accommodationDetails?.numberOfPeople}}</div>
-  </div>
-  <div class="acc-text">
-    <div>{{accommodationDetails?.numberOfCancellationDays}}</div>
-    <span>&nbsp;dana pre rezervisanog termina je moguće otkazati smeštaj</span>
-  </div>
-  <div class="acc-text">
-    <span>Broj agenta&nbsp;</span>
-    <div>{{accommodationDetails?.agentId}}</div>
+  <div class="content-div-description">
+    <div class="description-content">
+      <div>{{accommodationDetails?.description}}</div>
+    </div>
+
   </div>
 </div>

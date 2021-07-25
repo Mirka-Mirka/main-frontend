@@ -1,27 +1,41 @@
 <div class="content-right">
-    <div class='content-results'>
-      <div class='item' *ngFor="let item of results">
-        <div class='image'>
-          <a (click)="onAccommodationPicked(item)">
-            <img mat-card-image class="acc-img" src="{{item.imageUrls[0]}}" alt="Photo of accomodation">
-          </a>
-        </div>
-        <mat-divider></mat-divider>
-        <div class='description'>
+  <div class='content-results'>
+    <div class='item' *ngFor="let item of results">
+      <div class='image'>
+        <a (click)="onAccommodationPicked(item)">
+          <img mat-card-image class="acc-img" src="{{item.imageUrls[0]}}" alt="Photo of accomodation">
+        </a>
+      </div>
+      <mat-divider></mat-divider>
+      <div class='description'>
         <mat-list role="list">
           <mat-list-item role="listitem" class="acc-name">{{item.name}}&nbsp;&nbsp;&nbsp;
-            <div class="stars" *ngFor="let number of [1,2,3,4,5]" >
-              <img *ngIf="item.stars < number" src="../../assets/star-empty.svg" width="20px" height="20px" alt="empty star">
-              <img *ngIf="item.stars >= number" src="../../assets/star-full.svg" width="20px" height="20px" alt="empty star">
+            <div class="stars" *ngFor="let number of [1,2,3,4,5]">
+              <img *ngIf="item.stars < number" src="../../assets/star-empty.svg" width="20px" height="20px"
+                alt="empty star">
+              <img *ngIf="item.stars >= number" src="../../assets/star-full.svg" width="20px" height="20px"
+                alt="empty star">
             </div>
           </mat-list-item>
-          <mat-card-content ><p class="acc-descriptions">{{item.description}}</p></mat-card-content>
+          <mat-card-content>
+            <p class="acc-descriptions">{{item.description}}</p>
+          </mat-card-content>
+          <mat-list-item role="listitem">
+            <a (click)="onAccommodationPicked(item)">
+              <button mat-raised-button color="primary">Detaljnije</button>
+            </a>
+          </mat-list-item>
         </mat-list>
-        </div>
-        <mat-divider></mat-divider>
-        <div class='price'>Cena {{item.price}}</div>
+
+         
+
       </div>
+      <mat-divider></mat-divider>
+      <div class='price'>Cena {{item.price}}</div>
+
     </div>
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]">
-    </mat-paginator>
+
+  </div>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[10, 25, 50, 100]">
+  </mat-paginator>
 </div>

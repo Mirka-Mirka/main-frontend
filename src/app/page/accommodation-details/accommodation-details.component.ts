@@ -13,6 +13,10 @@ export class AccommodationDetailsComponent implements OnInit {
   accomodationId: number;
   accommodationDetails: AccommodationModel | null = null;
   public imageObject: Array<object> = [];
+  public hasCoord = false;
+  public mapLat: number = 45.255;
+  public mapLng: number = 19.844722;
+  public zoom = 15;
 
   constructor(public router: Router, private route: ActivatedRoute,
     private accomodationService: AccommodationService, private toastr: ToastrService) {
@@ -28,14 +32,17 @@ export class AccommodationDetailsComponent implements OnInit {
               alt: '',
               title: ''
             }
-           
+
           });
         }
-
+        this.hasCoord = true;
+        this.mapLat = data.address.latitude;
+        this.mapLng = data.address.longitude;
         this.accommodationDetails = data;
-        console.log(this.accommodationDetails);
-
       } else {
+        this.hasCoord = false;
+        this.mapLat = 45.255;
+        this.mapLng = 19.844722;
         this.toastr.error('Neuspešno prijavljivanje!');
       }
     });
@@ -43,5 +50,4 @@ export class AccommodationDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -33,7 +33,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ToastrModule } from "ngx-toastr";
 import { SearchComponent } from './components/search/search.component';
 import { TableComponent } from './components/table/table.component';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
     HttpClientModule,
     ToastrModule.forRoot(),
     NgImageSliderModule,
-    GoogleMapsModule
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAe6_qr3ZfC1haiTsgwf8V9YPRsU12tMZ8'
+    })
   ],
   providers: [
     MatDatepickerModule,

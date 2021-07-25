@@ -10,7 +10,15 @@
     .item {
         display: flex;
         justify-content: flex-start;
+        margin: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        // border: 2px rgb(192, 189, 189) groove;
+        box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     }
+    .item:hover {
+        box-shadow:  rgb(60 116 230 / 35%) 0px 5px 15px;
+      }
 }
 .acc-img {
     width: 300px;
@@ -21,7 +29,8 @@
     font-style: italic;
 }
 .acc-descriptions {
-    padding: 20px;
+    padding-bottom: 10px;
+    padding-top: 20px;
     text-align: justify;
 }
 .price {
@@ -29,4 +38,7 @@
 }
 .image{
     margin: 15px;
+}
+.acc-actions{
+    align-self: flex-end;
 }
