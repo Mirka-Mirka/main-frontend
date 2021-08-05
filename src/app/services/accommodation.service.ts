@@ -47,35 +47,36 @@ export class AccommodationService {
         );
     }
 
-    // public postAccommodation(accommodation: AccommodationModel): Observable<any> {
-    //     return this.http.post<any>(`${baseURL}/properties`, accommodation).pipe(
-    //         tap(() => { }),
-    //         catchError((error) => {
-    //             this.toastr.error(error, 'Error!');
+    public postAccommodation(accommodation: AccommodationModel): Observable<any> {
+        return this.http.post<any>(`${baseURL}/properties`, accommodation).pipe(
+            tap(() => { }),
+            catchError((error) => {
+                this.toastr.error(error, 'Error!');
 
-    //             return of(false);
-    //         })
-    //     );
-    // }
+                return of(false);
+            })
+        );
+    }
 
-    // public deleteAccommodation((Id: string) {
-    //     return this.http.delete<any>(`${baseURL}/properties/${Id}`).pipe(
-    //         tap(() => { }),
-    //         catchError((error) => {
-    //             this.toastr.error(error, 'Error!');
+    public deleteAccommodation(Id: string) {
+        return this.http.delete<any>(`${baseURL}/properties/${Id}`).pipe(
+            tap(() => { }),
+            catchError((error) => {
+                this.toastr.error(error, 'Error!');
 
-    //             return of(false);
-    //         })
-    //     );
-    // }
+                return of(false);
+            })
+        );
+    }
 
-    // public editAccommodation(accommodation: AccommodationModel) {
-    // return this.http.get<any>(`${baseURL}//properties/${Id}`, accommodation).pipe(
-    //     tap(() => { }),
-    //     catchError((error) => {
-    //         this.toastr.error(error, 'Error!');
+    public editAccommodation(Id: string, accommodation: AccommodationModel) {
+    return this.http.post<any>(`${baseURL}//properties/${Id}`, accommodation).pipe(
+        tap(() => { }),
+        catchError((error) => {
+            this.toastr.error(error, 'Error!');
 
-    //         return of(false);
-    //     })
-    // );
+            return of(false);
+        })
+    );
+}
 }

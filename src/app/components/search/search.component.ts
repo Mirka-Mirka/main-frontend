@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AccommodationService } from 'src/app/services/accommodation.service';
+import { AccommodationServiceService } from 'src/app/services/accommodation-service.service';
 export interface InputDropDownMenu {
   id: number;
   name: string;
@@ -11,6 +12,7 @@ export interface InputDropDownMenu {
 export interface Codebook {
   id: string;
   name: string;
+  nameEn?: string;
 }
 @Component({
   selector: 'app-search',
@@ -21,6 +23,8 @@ export class SearchComponent implements OnInit {
 
   form: FormGroup;
   public accommodationTypeMenu: Codebook[] = [];
+  public allAccomodationServices: Codebook[] = [];
+  public checkboxes: FormControl []=[];
 
   personNumberMenu: InputDropDownMenu[] = [
     { id: 1, name: '1 osoba' },
@@ -46,7 +50,9 @@ export class SearchComponent implements OnInit {
   pageSize: number[] = [1];
   results: { name: string, id: number }[] = [{ name: 'Prva stranica', id: 1 }, { name: 'Druga stranica', id: 2 }];
 
-  constructor(public router: Router, public accommodationService: AccommodationService) {
+  constructor(public router: Router, 
+              public accommodationService: AccommodationService,
+              public service : AccommodationServiceService) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -62,11 +68,22 @@ export class SearchComponent implements OnInit {
       pool: new FormControl(false),
       spa: new FormControl(false),
       gym: new FormControl(false),
+      parking: new FormControl(false),
+      tv: new FormControl(false),
+      pet_fiendly: new FormControl(false),
+      all_inclusive: new FormControl(false),
+      half_board: new FormControl(false),
+      room_and_board: new FormControl(false),
+      breakfast: new FormControl(false),
+      mini_kitchen: new FormControl(false),
+      kitchen: new FormControl(false),
+      private_bathroom: new FormControl(false),
     })
   }
 
   ngOnInit(): void {
     this.fetchAccomTypes();
+    this.fetchAccomServices();
   }
 
   fetchAccomTypes(): void {
@@ -79,8 +96,19 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  fetchAccomServices(): void {
+    this.service.getAccommodationServices().subscribe((response) => {
+      const tmp = [];
+      for (const accomServices of response) {
+        tmp.push({ id: accomServices.id, name: accomServices.name, nameEn: accomServices.nameEn });
+      }
+      this.allAccomodationServices = tmp;
+    });
+  }
+
   onSubmitSearh() {
     console.log("Ubaceni podaci iz forme");
     console.log(this.form);
   }
+
 }

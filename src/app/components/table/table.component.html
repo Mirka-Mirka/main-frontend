@@ -9,13 +9,16 @@
       <mat-divider></mat-divider>
       <div class='description'>
         <mat-list role="list">
-          <mat-list-item role="listitem" class="acc-name">{{item.name}}&nbsp;&nbsp;&nbsp;
-            <div class="stars" *ngFor="let number of [1,2,3,4,5]">
+          <mat-list-item role="listitem" class="acc-name">
+            <div class="stars-title">{{item.name}}&nbsp;&nbsp;&nbsp;
+            <span class="stars" *ngFor="let number of [1,2,3,4,5]">
               <img *ngIf="item.stars < number" src="../../assets/star-empty.svg" width="20px" height="20px"
                 alt="empty star">
               <img *ngIf="item.stars >= number" src="../../assets/star-full.svg" width="20px" height="20px"
                 alt="empty star">
-            </div>
+            </span>
+          </div>
+          <div class="price">Cena: {{item.price}},00 EUR / dan</div>
           </mat-list-item>
           <mat-card-content>
             <p class="acc-descriptions">{{item.description}}</p>
@@ -26,12 +29,7 @@
             </a>
           </mat-list-item>
         </mat-list>
-
-         
-
       </div>
-      <mat-divider></mat-divider>
-      <div class='price'>Cena {{item.price}}</div>
 
     </div>
 

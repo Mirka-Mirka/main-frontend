@@ -32,13 +32,22 @@
     padding-bottom: 10px;
     padding-top: 20px;
     text-align: justify;
+    margin: 0 16px;
 }
 .price {
-    padding-top: 18px;
+
 }
 .image{
     margin: 15px;
 }
 .acc-actions{
     align-self: flex-end;
+}
+.description {
+    ::ng-deep .mat-list-item-content{
+        justify-content: space-between;
+    }
+    ::ng-deep .stars-title{
+        display: block;
+    }
 }

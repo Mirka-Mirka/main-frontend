@@ -47,13 +47,16 @@
         <!-- STARS -->
         <app-stars></app-stars>
         <!-- ADDITIONS -->
-        <section class="checkbox-section">
-            <mat-checkbox class="checkbox-margin" formControlName="wifi">WiFi</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="pool">Bazen</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="spa">Spa</mat-checkbox>
-            <mat-checkbox class="checkbox-margin" formControlName="gym">Teretana</mat-checkbox>
+        <section class="checkbox-section" *ngFor="let item of allAccomodationServices;let i=index">
+              <mat-checkbox *ngIf="item.nameEn!=undefined" 
+                class="checkbox-margin" 
+                [formControlName]="item.nameEn" 
+                [value]="item.id" 
+                [name]="item.name">
+                {{item.name}}
+            </mat-checkbox>
         </section>
-
+        <!-- SUBMIT -->
         <div class="search checkbox-section">
             <button mat-raised-button color="primary" (click)=" onSubmitSearh()">Pretraži</button>
         </div>
