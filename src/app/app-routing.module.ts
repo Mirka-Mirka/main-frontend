@@ -6,6 +6,7 @@ import { AccommodationDetailsComponent } from "./page/accommodation-details/acco
 import { LoginComponent } from './page/login/login.component';
 import { RegistrationComponent } from './page/registration/registration.component';
 import { AuthGuard } from "./guards/auth.guard";
+import { AccommodationComponent } from './accommodation/accommodation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'registration', component: RegistrationComponent, pathMatch: 'full' },
   { path: 'accommodation/:id', component: AccommodationDetailsComponent, pathMatch: 'full' },
+  { path: 'accommodation', component: AccommodationComponent, pathMatch: 'full' },
 //  { path: '**', redirectTo: 'requests', canActivate: [AuthGuard] }
 ];
 

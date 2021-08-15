@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { AccommodationService } from 'src/app/services/accommodation.service';
 import { AccommodationServiceService } from 'src/app/services/accommodation-service.service';
+import { AccommodationService } from 'src/app/services/accommodation.service';
 export interface InputDropDownMenu {
   id: number;
   name: string;
@@ -110,5 +110,4 @@ export class SearchComponent implements OnInit {
     console.log("Ubaceni podaci iz forme");
     console.log(this.form);
   }
-
 }

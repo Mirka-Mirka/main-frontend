@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +24,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { AccommodationDetailsComponent } from './page/accommodation-details/accommodation-details.component';
 import { LoginComponent } from './page/login/login.component';
@@ -34,6 +36,9 @@ import { ToastrModule } from "ngx-toastr";
 import { SearchComponent } from './components/search/search.component';
 import { TableComponent } from './components/table/table.component';
 import { AgmCoreModule } from '@agm/core';
+import { AccommodationComponent } from './accommodation/accommodation.component';
+import { AccommodationAddComponent } from './accommodation/accommodation-add/accommodation-add.component';
+import { AccommodationEditComponent } from './accommodation/accommodation-edit/accommodation-edit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,10 @@ import { AgmCoreModule } from '@agm/core';
     LoginComponent,
     RegistrationComponent,
     SearchComponent,
-    TableComponent
+    TableComponent,
+    AccommodationComponent,
+    AccommodationAddComponent,
+    AccommodationEditComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +76,9 @@ import { AgmCoreModule } from '@agm/core';
     MatPaginatorModule,
     MatDividerModule,
     MatListModule,
+    MatTabsModule,
+    MatSnackBarModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),

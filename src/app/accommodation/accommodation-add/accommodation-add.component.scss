@@ -1,0 +1,26 @@
+.acc-add-container {
+    margin: 70px;
+    padding: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.acc-add-form {
+    align-content: center;
+    width: 500px;
+  
+    &-field {
+      margin-top: auto;
+      display: block;
+    }
+  }
+.checkbox-section {
+    margin-top: 10px;
+    .checkbox-margin {
+        margin-right: 10px;
+    }
+}
+.stars{
+    width: 180px;
+    height: 50px;
+}
