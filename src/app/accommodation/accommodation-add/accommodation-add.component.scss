@@ -1,6 +1,11 @@
 .acc-add-container {
-    margin: 70px;
-    padding: 90px;
+    margin-top: 0px;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-top: 20px;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,6 +13,9 @@
 .acc-add-form {
     align-content: center;
     width: 500px;
+    display: flex;
+    flex-direction: column;
+    
   
     &-field {
       margin-top: auto;
@@ -21,6 +29,24 @@
     }
 }
 .stars{
-    width: 180px;
-    height: 50px;
+    width: 100%;
+    height: 20px;
+}
+.street, .city, .country, .lat, .long{
+  width: 50%; 
+}
+
+.find{
+  margin-bottom: 15px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.selectionDiv{
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+.button{
+  margin-top: 5%;
+  margin-left: 150px;
+  margin-right: 150px;
 }
