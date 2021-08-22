@@ -1,6 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { UserModel } from '../../models/user.model';
+import {UserModel, UserRole} from '../../models/user.model';
 import { filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (currentUser) {
       this.user = JSON.parse(currentUser);
     }
-  
+
     const token = localStorage.getItem('token');
     if (token) {
       this.token = JSON.parse(token);
@@ -53,5 +53,15 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.authService.logout();
     this.router.navigate(['/home']);
     this.token = null;
+  }
+
+  openUserPage() {
+    if (this.user && this.user.role === UserRole.AGENT) {
+      this.router.navigate(['/accommodation']);
+    }
+  }
+
+  isAgent() {
+    return this.user && this.user.role === UserRole.AGENT;
   }
 }

@@ -17,19 +17,19 @@ export class AccommodationService {
         return this.http.get<any>(`${baseURL}/types`).pipe(
             tap(() => { }),
             catchError((error) => {
-                this.toastr.error(error, 'Error!');
+                this.toastr.error(error.message, 'Error!');
 
                 return of(false);
             })
         );
     }
 
-    
-    public getAccommodations() {
-        return this.http.get<any>(`${baseURL}/properties`).pipe(
+
+    public getAccommodations(userId: number | undefined) {
+        return this.http.get<any>(`${baseURL}/properties` + userId ? '/userId/manager' : '').pipe(
             tap(() => { }),
             catchError((error) => {
-                this.toastr.error(error, 'Error!');
+                this.toastr.error(error.message, 'Error!');
 
                 return of(false);
             })
@@ -40,7 +40,7 @@ export class AccommodationService {
         return this.http.get<any>(`${baseURL}/properties/${id}`).pipe(
             tap(() => { }),
             catchError((error) => {
-                this.toastr.error(error, 'Error!');
+                this.toastr.error(error.message, 'Error!');
 
                 return of(false);
             })
@@ -51,7 +51,7 @@ export class AccommodationService {
         return this.http.post<any>(`${baseURL}/properties`, accommodation).pipe(
             tap(() => { }),
             catchError((error) => {
-                this.toastr.error(error, 'Error!');
+                this.toastr.error(error.message, 'Error!');
 
                 return of(false);
             })
@@ -62,7 +62,7 @@ export class AccommodationService {
         return this.http.delete<any>(`${baseURL}/properties/${Id}`).pipe(
             tap(() => { }),
             catchError((error) => {
-                this.toastr.error(error, 'Error!');
+                this.toastr.error(error.message, 'Error!');
 
                 return of(false);
             })
@@ -73,7 +73,7 @@ export class AccommodationService {
     return this.http.post<any>(`${baseURL}//properties/${Id}`, accommodation).pipe(
         tap(() => { }),
         catchError((error) => {
-            this.toastr.error(error, 'Error!');
+            this.toastr.error(error.message, 'Error!');
 
             return of(false);
         })
