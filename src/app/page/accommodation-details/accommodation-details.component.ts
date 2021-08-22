@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { AccommodationModel } from 'src/app/models/accommodation.model';
@@ -19,7 +20,7 @@ export class AccommodationDetailsComponent implements OnInit {
   public zoom = 15;
 
   constructor(public router: Router, private route: ActivatedRoute,
-    private accomodationService: AccommodationService, private toastr: ToastrService) {
+    private accomodationService: AccommodationService, private toastr: ToastrService, private snackBar:MatSnackBar,) {
     this.accomodationId = this.route.snapshot.params.id;
     this.accomodationService.getAccommodation(this.accomodationId.toString()).subscribe((data) => {
 
@@ -49,5 +50,23 @@ export class AccommodationDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onDeleteAccommodation(){
+    this.accomodationService.deleteAccommodation(this.accomodationId.toString()).subscribe(
+      ()=>{
+        console.log('Smeštaj ' + this.accommodationDetails?.name + ' successfuly deleted');
+        this.snackBar.open("Smeštaj " + this.accommodationDetails?.name + " je uspešno izbrisan!", "", { duration: 2500,});
+        this.ngOnInit();
+      },
+      error=>{
+        alert('Smeštaj ' + this.accommodationDetails?.name + ' nije izbrisan! Došlo je do greške');
+      console.log(error);}
+    );
+  }
+
+
+  onEditAccommodation(){
+
   }
 }

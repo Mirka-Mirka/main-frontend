@@ -1,6 +1,6 @@
 <div class="acc-add-container">
     <h2>Unesite podatke o smeštaju</h2>
-    <form class="acc-add-form" [formGroup]="form">
+    <form class="acc-add-form" *ngIf="form" [formGroup]="form">
       <!-- NAME -->
       <mat-form-field class="acc-add-form-field" appearance="fill">
         <mat-label>Naziv</mat-label>
@@ -36,11 +36,12 @@
         <mat-checkbox *ngIf="item.nameEn!=undefined" 
           class="checkbox-margin" 
           [formControlName]="item.nameEn" 
-          [value]="item.id" 
           [name]="item.name">
           {{item.name}}
         </mat-checkbox>
       </section>
+
+
 
       <!-- CANCELLATION DAYS -->
       <mat-form-field class="acc-add-form-field" appearance="fill">

@@ -66,6 +66,22 @@
     <div class="description-content">
       <div>{{accommodationDetails?.description}}</div>
     </div>
-
   </div>
+
+  <div class ="changeButtons">
+    <a (click)="onEditAccommodation()">
+      <button mat-raised-button color="primary">Izmeni podatke</button>
+    </a>
+    <a (click)="onDeleteAccommodation()">
+      <button mat-raised-button color="primary">Izbriši smeštaj</button>
+    </a>
+  </div>
+
+
+
+  <!-- <md-card-actions>
+    <button md-raised-button color="primary" (click) = "detailsDialog(acc)">Details</button>
+    <button *ngIf="(managerRole == true) || (adminRole == true)"  md-raised-button color="primary" (click) = "editAccNewDialog(acc)">Edit</button>
+    <button *ngIf="(managerRole == true) || (adminRole == true)" md-raised-button color="warn" (click) = "delete(acc)">Delete</button>
+  </md-card-actions> -->
 </div>
