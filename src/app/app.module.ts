@@ -92,7 +92,7 @@ import {MapComponent} from "./map/map.component";
   ],
   providers: [
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule
   ],
   bootstrap: [AppComponent]
 })
