@@ -26,7 +26,7 @@ export class AccommodationService {
 
 
     public getAccommodations(userId: number | undefined) {
-        return this.http.get<any>(`${baseURL}/properties` + userId ? '/userId/manager' : '').pipe(
+        return this.http.get<any>(`${baseURL}/properties` + (userId ? `/${userId}/manager` : '')).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');

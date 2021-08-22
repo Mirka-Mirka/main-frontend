@@ -54,7 +54,7 @@ export class AuthService {
     return this.http.post<any>(`${baseURL}/auth/login`, loginData).pipe(
       tap((data) => {
         localStorage.setItem('token', JSON.stringify(new Token({type: data.tokenType, value: data.accessToken})));
-        localStorage.setItem('currentUser', JSON.stringify(new UserModel( {username: data.username, role: data.role})));
+        localStorage.setItem('currentUser', JSON.stringify(new UserModel( {username: data.username, role: data.role, id: data.id})));
         this.currentTokenSubject.next(new Token({type: data.tokenType, value: data.accessToken}));
         this.currentTokenUserInfo.next(new UserModel( {username: data.username, role: data.role}));
       }),
