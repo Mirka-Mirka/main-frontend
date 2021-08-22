@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 export interface StarsColored {
   index: number;
@@ -14,6 +15,7 @@ export class StarsComponent implements OnInit {
 
   numArray: number[] = [0, 1, 2, 3, 4];
   grade: number = -1;
+  @Output() starNumberEvent = new EventEmitter<number>();
 
   constructor() {
   }
@@ -22,7 +24,8 @@ export class StarsComponent implements OnInit {
   }
 
   onClickStar(clickedItem: number){
-    this.grade = clickedItem;
+    this.grade = clickedItem; 
+    this.starNumberEvent.emit(clickedItem);
   }
 
 }

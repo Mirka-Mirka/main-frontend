@@ -25,6 +25,7 @@ export class AccommodationAddComponent implements OnInit {
   public allAccomodationServices: Codebook[] = [];
   nAccommodation: any = {};
   private postAccommodation:any = {};
+  private starNumber: number | undefined;
 
   // public accommodationTypes: Array<AccomodationType>;
   // public accommodationServices: Array<AccommodationServiceService>;
@@ -88,14 +89,10 @@ export class AccommodationAddComponent implements OnInit {
       city: new FormControl(''),
       country: new FormControl(''),
       latitude: new FormControl(0.0),
-      longitude: new FormControl(0.0),
+      longitude: new FormControl(0.0)
     });
-    console.log("_________1")
     this.allAccomodationServices.forEach(item => {
-      console.log("_________")
-      console.log(item.nameEn);
       if(this.form && item.nameEn != undefined){
-
          this.form.addControl(item.nameEn, new FormControl(''));
       }  
     });
@@ -104,31 +101,36 @@ export class AccommodationAddComponent implements OnInit {
   addAccommodation() {  
       console.log(this.accommodationService);
       if (this.form){
-        this.postAccommodation.name = this.form.controls.name;
-        this.postAccommodation.description = this.form.controls.description;
-        this.postAccommodation.price = this.form.controls.price;
-        this.postAccommodation.stars = this.form.controls.stars;
-        this.postAccommodation.numberOfCancellationDays = this.form.controls.numberOfCancellationDays;
-        this.postAccommodation.numberOfPeople = this.form.controls.numberOfPeople;
+        this.postAccommodation.name = this.form.controls['name'].value;
+        this.postAccommodation.description = this.form.controls['description'].value;
+        this.postAccommodation.price = this.form.controls['price'].value;
+        this.postAccommodation.stars = this.starNumber;
+        this.postAccommodation.numberOfCancellationDays = this.form.controls['numberOfCancellationDays'].value;
+        this.postAccommodation.numberOfPeople = this.form.controls['numberOfPeople'].value;
         this.postAccommodation.address = {};
-        this.postAccommodation.address.city = this.form.controls.city;
-        this.postAccommodation.address.country = this.form.controls.country;
-        this.postAccommodation.address.latitude = this.form.controls.latitude;
-        this.postAccommodation.address.longitude = this.form.controls.longitude;
-        this.postAccommodation.address.street = this.form.controls.street;
-        this.postAccommodation.typeId = this.form.controls.accomodationTypeId;
+        this.postAccommodation.address.city = this.form.controls['city'].value;
+        this.postAccommodation.address.country = this.form.controls['country'].value;
+        this.postAccommodation.address.latitude = this.form.controls['latitude'].value;
+        this.postAccommodation.address.longitude = this.form.controls['longitude'].value;
+        this.postAccommodation.address.street = this.form.controls['street'].value;
+        this.postAccommodation.typeId = this.form.controls['accommondationType'].value;
         this.postAccommodation.imageUrls = [];
         this.postAccommodation.agentId = ""
        //  this.postAccommodation.agentId = this.managerId;
         this.postAccommodation.services = new Array<string>();
         this.allAccomodationServices.forEach(item => {
           if(this.form && item.nameEn != undefined){
+            console.log("------"+item.id);
             console.log(this.form.controls[item.nameEn].value);
-            console.log(item.nameEn);
+            console.log(item.name);
             this.form.controls[item.nameEn];
-            this.postAccommodation[item.nameEn]=this.form.controls[item.nameEn].value;
+            if(this.form.controls[item.nameEn].value){
+              this.postAccommodation.services.push(item.id);
+            }
+            
           }   
         });
+        console.log(this.postAccommodation);
         this.accommodationService.postAccommodation(this.postAccommodation);
       }
 
@@ -145,7 +147,7 @@ export class AccommodationAddComponent implements OnInit {
       data: {
         mapInfo: this.mapInfo,
         adding: true,
-        watching: false
+        watching: true
       },
     });
 
@@ -160,5 +162,9 @@ export class AccommodationAddComponent implements OnInit {
       this.nAccommodation.latitude = res.latitude;
       this.nAccommodation.longitude = res.longitude;
     });
+  }
+
+  onStarClick(event : number){
+      this.starNumber = event + 1;
   }
 }
