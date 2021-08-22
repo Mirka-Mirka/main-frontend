@@ -39,6 +39,8 @@ import { AgmCoreModule } from '@agm/core';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { AccommodationAddComponent } from './accommodation/accommodation-add/accommodation-add.component';
 import { AccommodationEditComponent } from './accommodation/accommodation-edit/accommodation-edit.component';
+import {NgModule} from "@angular/core";
+import {MapComponent} from "./map/map.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { AccommodationEditComponent } from './accommodation/accommodation-edit/a
     TableComponent,
     AccommodationComponent,
     AccommodationAddComponent,
-    AccommodationEditComponent
+    AccommodationEditComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
