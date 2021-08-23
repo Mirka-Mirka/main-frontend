@@ -5,14 +5,11 @@ import { Codebook } from 'src/app/components/search/search.component';
 import { MapComponent } from 'src/app/map/map.component';
 import { MapModel } from 'src/app/map/map.model';
 import {
-  MatDialog,
-  MatDialogConfig,
+  MatDialog
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccommodationServiceService } from 'src/app/services/accommodation-service.service';
 import { AccommodationService } from 'src/app/services/accommodation.service';
-import { AccommodationModel } from 'src/app/models/accommodation.model';
-import { AddressModel } from 'src/app/models/address.model';
 
 @Component({
   selector: 'app-accommodation-add',
@@ -23,13 +20,9 @@ export class AccommodationAddComponent implements OnInit {
   form: FormGroup | undefined;
   public accommodationTypeMenu: Codebook[] = [];
   public allAccomodationServices: Codebook[] = [];
-  nAccommodation: any = {};
   private postAccommodation:any = {};
   private starNumber: number | undefined;
 
-  // public accommodationTypes: Array<AccomodationType>;
-  // public accommodationServices: Array<AccommodationServiceService>;
-  // public places:Array<Place>;
   mapInfo: MapModel | undefined;
 
   constructor(
@@ -37,12 +30,8 @@ export class AccommodationAddComponent implements OnInit {
     public accommodationService: AccommodationService,
     public service: AccommodationServiceService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar, 
-    private fb : FormBuilder
-  ) {
-    
-
-     
+    private snackBar: MatSnackBar
+  ) {   
   }
 
   ngOnInit(): void {
@@ -116,7 +105,7 @@ export class AccommodationAddComponent implements OnInit {
         this.postAccommodation.typeId = this.form.controls['accommondationType'].value;
         this.postAccommodation.imageUrls = [];
         this.postAccommodation.agentId = ""
-       //  this.postAccommodation.agentId = this.managerId;
+        this.postAccommodation.agentId = this.managerId;
         this.postAccommodation.services = new Array<string>();
         this.allAccomodationServices.forEach(item => {
           if(this.form && item.nameEn != undefined){
@@ -137,19 +126,8 @@ export class AccommodationAddComponent implements OnInit {
   }
 
   openMapAdd() {
-    let config = new MatDialogConfig();
-    config.height = '700px';
-    config.width = '700px';
 
-    this.mapInfo = new MapModel(45.242268, 19.842954, '', '', '', '');
-
-    let dialogRef = this.dialog.open(MapComponent, {
-      data: {
-        mapInfo: this.mapInfo,
-        adding: true,
-        watching: true
-      },
-    });
+    let dialogRef = this.dialog.open(MapComponent);
 
     dialogRef.afterClosed().subscribe((res) => {
       console.log('Successfuly checked coordinates.');
@@ -159,8 +137,11 @@ export class AccommodationAddComponent implements OnInit {
       if (res == undefined) {
         return;
       }
-      this.nAccommodation.latitude = res.latitude;
-      this.nAccommodation.longitude = res.longitude;
+      if(this.form){
+        this.form.controls['latitude'].patchValue(res.latitude);
+        this.form.controls['longitude'].patchValue(res.longitude);
+      }
+
     });
   }
 

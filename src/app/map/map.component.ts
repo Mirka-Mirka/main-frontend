@@ -1,44 +1,54 @@
-import { Component, Inject, OnInit, Input } from '@angular/core';
-import { MapModel } from './map.model';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AccommodationModel } from '../models/accommodation.model';
+import { MouseEvent } from '@agm/core';
 
+interface marker {
+	lat: number;
+	lng: number;
+	label: string;
+	draggable: boolean;
+}
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
   styles: ['agm-map {height: 600px; width: 600px;}'], //postavljamo sirinu i visinu mape
 })
-export class MapComponent implements OnInit {
-  latitudeOnClick: number = 45.267136;
-  longitudeOnClick: number = 19.833549;
-  public accomodation: AccommodationModel | undefined;
-  public mapInfo: MapModel;
-  public watching: boolean = false;
-  public adding: boolean = false;
+export class MapComponent {
+  lat: number = 45.25;
+  lng: number = 19.833549;
+  zoom: number = 8;
+
+  markers: marker[] = [
+	  {
+		  lat:  45.2,
+		  lng: 19.7,
+		  label: 'A',
+		  draggable: true
+	  }];
 
   constructor(
     public dialogRef: MatDialogRef<MapComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.mapInfo = new MapModel(45.267136, 19.833549, '', '', '', '');
-    this.mapInfo = data.mapInfo;
-    this.adding = data.adding;
-    this.watching = data.watching;
-    console.log(data);
+
   }
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+  
 
-  ngOnInit() {}
-
-  onClick(res: any) {
-    this.latitudeOnClick = res.coords.lat;
-    this.longitudeOnClick = res.coords.lng;
+  
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    this.lat =  $event.coords.lat;
+    this.lng =  $event.coords.lng;
+    console.log('dragEnd', m, $event);
   }
 
   setLocation() {
     this.dialogRef.close({
-      latitude: this.latitudeOnClick,
-      longitude: this.longitudeOnClick,
+      latitude: this.lat,
+      longitude: this.lng,
     });
   }
 }

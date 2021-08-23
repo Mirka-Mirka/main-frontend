@@ -53,7 +53,7 @@
       <mat-form-field class="acc-add-form-field" appearance="fill">
         <mat-label>Predvidjeno za </mat-label>
         <input matInput placeholder="2" formControlName="numberOfPeople" />
-        <span>ljudi</span>
+        <span>osoba</span>
       </mat-form-field>
       
       <div> Adresa
@@ -94,7 +94,7 @@
           <button class="find" mat-raised-button (click)="openMapAdd()">Nadji lokaciju na mapi</button>
       </div>
 
-      <button mat-flat-button color="primary" 
+      <button mat-flat-button color="primary" [disabled]="!form.valid"
         class="button"  mat-raised-button color="primary" (click)="addAccommodation()">
         Dodaj smeštaj
       </button>

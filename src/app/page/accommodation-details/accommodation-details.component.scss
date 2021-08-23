@@ -88,7 +88,12 @@
     }
     .changeButtons{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        margin: 10px 0;
+        .button{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
     }
 
  }
