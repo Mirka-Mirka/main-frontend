@@ -1,33 +1,36 @@
-<agm-map 
-  [latitude]="lat"
-  [longitude]="lng"
-  [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [zoomControl]="false">
+<!-- Kreiramo mapu -->
+<agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="onClick($event)">
+   
+  <!-- Postavljamo markere -->
+  <agm-marker *ngIf="watching==true" 
+  [latitude]="mapInfo.centerLat" 
+  [longitude]="mapInfo.centerLong" 
+  [title]="mapInfo.title"
+  [label]="mapInfo.label">
+    <agm-info-window [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" >
 
-  <agm-marker 
-      *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
-      
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
-    </agm-info-window>
-    
+     
+      <span style="font-size: 16px;font-family:'Times New Roman'">{{accomodation?.name}}</span>
+      <br/>
+      <span style="font-family:'Times New Roman'; color:gray;"><strong>{{accomodation?.address}}</strong></span>
+    </agm-info-window>>
+
   </agm-marker>
-  
-  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
-      [radius]="5000"
-      [fillColor]="'red'"
-      [circleDraggable]="true"
-      [editable]="true">
-  </agm-circle>
+  <agm-marker *ngIf="adding==true" [latitude]="latitudeOnClick" [longitude]="longitudeOnClick">
+    <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+    
+    <agm-info-window [latitude]="latitudeOnClick" [longitude]="longitudeOnClick" >
+              <span style="color:gray;">Latitude: {{latitudeOnClick}}</span>
+                <br/>
+              <span style="color:gray;">Longitude: {{longitudeOnClick}}</span>
+    </agm-info-window>
 
+  </agm-marker>
 </agm-map>
-  <div class="center" style="margin-top: 10px">
-        <button md-raised-button type="submit" color="primary" [disabled]="lat==undefined" (click)="setLocation()">Zapamti vrednosti</button>
-  </div>
+<div *ngIf="adding==true" class="center" style="margin-top: 10px">
+      <button md-raised-button 
+        type="submit" 
+        color="primary" 
+        [disabled]="latitudeOnClick==undefined" 
+        (click)="setLocation()">Zapamti vrednosti</button>
+</div>

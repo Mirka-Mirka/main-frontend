@@ -5,7 +5,7 @@ import { Codebook } from 'src/app/components/search/search.component';
 import { MapComponent } from 'src/app/map/map.component';
 import { MapModel } from 'src/app/map/map.model';
 import {
-  MatDialog
+  MatDialog, MatDialogConfig
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccommodationServiceService } from 'src/app/services/accommodation-service.service';
@@ -145,23 +145,50 @@ export class AccommodationAddComponent implements OnInit {
 
   }
 
-  openMapAdd() {
+  // openMapAdd() {
+
+  //   let dialogRef = this.dialog.open(MapComponent);
+
+  //   dialogRef.afterClosed().subscribe((res) => {
+  //     console.log('Successfuly checked coordinates.');
+  //     this.snackBar.open('Successfuly checked coordinates.', '', {
+  //       duration: 2500,
+  //     });
+  //     if (res == undefined) {
+  //       return;
+  //     }
+  //     if(this.form){
+  //       this.form.controls['latitude'].patchValue(res.latitude);
+  //       this.form.controls['longitude'].patchValue(res.longitude);
+  //     }
+
+  //   });
+  // }
+
+  openMapAdd(){
+    let config = new MatDialogConfig();
+    config.height='700px';
+    config.width='700px';
+
+    this.mapInfo = new MapModel(45.242268, 19.842954, 
+    "",
+    "" , "" , "");
 
     let dialogRef = this.dialog.open(MapComponent);
+    dialogRef.componentInstance.mapInfo = this.mapInfo;
+    dialogRef.componentInstance.adding = true;
+    dialogRef.componentInstance.watching = false;
 
     dialogRef.afterClosed().subscribe((res) => {
-      console.log('Successfuly checked coordinates.');
-      this.snackBar.open('Successfuly checked coordinates.', '', {
-        duration: 2500,
-      });
+      console.log("Successfuly checked coordinates.")
+      this.snackBar.open("Koordinate su uspešno postavljene.", "", { duration: 2500,});
       if (res == undefined) {
-        return;
+          return;
       }
       if(this.form){
         this.form.controls['latitude'].patchValue(res.latitude);
         this.form.controls['longitude'].patchValue(res.longitude);
       }
-
     });
   }
 

@@ -41,6 +41,8 @@ import { AccommodationAddComponent } from './accommodation/accommodation-add/acc
 import { AccommodationEditComponent } from './accommodation/accommodation-edit/accommodation-edit.component';
 import {NgModule} from "@angular/core";
 import {MapComponent} from "./map/map.component";
+import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationAddComponent } from './reservation/reservation-add/reservation-add.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {MapComponent} from "./map/map.component";
     AccommodationComponent,
     AccommodationAddComponent,
     AccommodationEditComponent,
-    MapComponent
+    MapComponent,
+    ReservationComponent,
+    ReservationAddComponent
   ],
   imports: [
     BrowserModule,
