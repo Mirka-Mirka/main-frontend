@@ -10,6 +10,9 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccommodationServiceService } from 'src/app/services/accommodation-service.service';
 import { AccommodationService } from 'src/app/services/accommodation.service';
+import { UserModel } from 'src/app/models/user.model';
+import { Token } from 'src/app/models/token.model';
+import jwtDecode from "jwt-decode";
 
 @Component({
   selector: 'app-accommodation-add',
@@ -22,6 +25,9 @@ export class AccommodationAddComponent implements OnInit {
   public allAccomodationServices: Codebook[] = [];
   private postAccommodation:any = {};
   private starNumber: number | undefined;
+  private currentUser: UserModel | null= null; 
+  private currentToken: Token | null= null; 
+  private managerId : string| null= null;
 
   mapInfo: MapModel | undefined;
 
@@ -65,6 +71,21 @@ export class AccommodationAddComponent implements OnInit {
     });
   }
   setForm(){
+    const getLocalItem= localStorage.getItem('currentUser');
+    if (getLocalItem) {
+      this.currentUser = JSON.parse(getLocalItem);
+    };
+    const getToken= localStorage.getItem('token');
+    if (getToken) {
+      this.currentToken= JSON.parse(getToken);
+      if (this.currentToken && this.currentUser?.role =="AGENT"){
+        var decodedToken : any = jwtDecode(this.currentToken.type+" "+this.currentToken.value);
+        if (decodedToken) {
+          this.managerId = decodedToken.sub;
+        }
+      }
+    };
+
     this.form = new FormGroup({
       name: new FormControl(null),
       description: new FormControl(null),
@@ -92,19 +113,18 @@ export class AccommodationAddComponent implements OnInit {
       if (this.form){
         this.postAccommodation.name = this.form.controls['name'].value;
         this.postAccommodation.description = this.form.controls['description'].value;
-        this.postAccommodation.price = this.form.controls['price'].value;
+        this.postAccommodation.price = parseFloat(this.form.controls['price'].value);
         this.postAccommodation.stars = this.starNumber;
-        this.postAccommodation.numberOfCancellationDays = this.form.controls['numberOfCancellationDays'].value;
-        this.postAccommodation.numberOfPeople = this.form.controls['numberOfPeople'].value;
+        this.postAccommodation.numberOfCancellationDays = parseInt(this.form.controls['numberOfCancellationDays'].value);
+        this.postAccommodation.numberOfPeople = parseInt(this.form.controls['numberOfPeople'].value);
         this.postAccommodation.address = {};
         this.postAccommodation.address.city = this.form.controls['city'].value;
         this.postAccommodation.address.country = this.form.controls['country'].value;
-        this.postAccommodation.address.latitude = this.form.controls['latitude'].value;
-        this.postAccommodation.address.longitude = this.form.controls['longitude'].value;
+        this.postAccommodation.address.latitude = parseFloat(this.form.controls['latitude'].value);
+        this.postAccommodation.address.longitude = parseFloat(this.form.controls['longitude'].value);
         this.postAccommodation.address.street = this.form.controls['street'].value;
         this.postAccommodation.typeId = this.form.controls['accommondationType'].value;
         this.postAccommodation.imageUrls = [];
-        this.postAccommodation.agentId = ""
         this.postAccommodation.agentId = this.managerId;
         this.postAccommodation.services = new Array<string>();
         this.allAccomodationServices.forEach(item => {

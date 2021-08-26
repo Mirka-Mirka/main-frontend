@@ -48,6 +48,7 @@ export class AccommodationService {
     }
 
     public postAccommodation(accommodation: AccommodationModel): Observable<any> {
+        console.log("****");
         return this.http.post<any>(`${baseURL}/properties`, accommodation).pipe(
             tap(() => { }),
             catchError((error) => {

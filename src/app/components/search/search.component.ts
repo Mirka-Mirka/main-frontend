@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit {
       gym: new FormControl(false),
       parking: new FormControl(false),
       tv: new FormControl(false),
-      pet_fiendly: new FormControl(false),
+      pet_friendly: new FormControl(false),
       all_inclusive: new FormControl(false),
       half_board: new FormControl(false),
       room_and_board: new FormControl(false),
