@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core"
 import { tap,catchError } from "rxjs/operators";
 import { ToastrService } from "ngx-toastr";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MainBackend, ReservationMS, RootLocation } from 'src/environments/environment';
 import { of } from 'rxjs';
 import { ReservationModel } from "../models/reservation.model";
+import { baseURL } from "src/environments/environment.prod";
 
 
 @Injectable({
@@ -13,11 +14,17 @@ import { ReservationModel } from "../models/reservation.model";
 export class ReservationService{
 
     constructor (private http: HttpClient, private toastr: ToastrService){
+
+    }
+    private createHttpOptions(token: string): any {
+        return { headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        })};
     }
 
-
     public getPropertyReservations(accomodationId: string){
-        return this.http.get<any>(`${RootLocation}${MainBackend}/reservations/property/${accomodationId}`).pipe(
+        return this.http.get<any>(`${RootLocation}${MainBackend}reservations/property/${accomodationId}`).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
@@ -29,7 +36,7 @@ export class ReservationService{
 
 
     public getAccommodations(userId: number | undefined) {
-        return this.http.get<any>(`${RootLocation}${MainBackend}/properties` + (userId ? `/${userId}/manager` : '')).pipe(
+        return this.http.get<any>(`${RootLocation}${MainBackend}properties` + (userId ? `/${userId}/manager` : '')).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
@@ -40,7 +47,7 @@ export class ReservationService{
     }
 
     public  getUserPropertyReservations(accomodationId: string) {
-        return this.http.get<any>(`${RootLocation}${ReservationMS}/reservations/user/property/` + accomodationId).pipe(
+        return this.http.get<any>(`${RootLocation}${ReservationMS}reservations/user/property/` + accomodationId).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
@@ -50,8 +57,26 @@ export class ReservationService{
         );
     }
 
+    public createReservation(registrationData:ReservationModel) {
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.post<any>(`http://localhost:8765/reservations-microservice/reservations`, registrationData, httpOptions).pipe(
+            tap(() => { }),
+            catchError((error) => {
+                this.toastr.error(error.message, 'Error!');
+
+                return of(false);
+            })
+        ); 
+
+    }
+
     public postReservation(registrationData:ReservationModel) {
-        return this.http.post<any>(`${RootLocation}${ReservationMS}/reservations/check/`, registrationData)
+        return this.http.post<any>(`${baseURL}/reservations/check/${registrationData.propertyId}`, registrationData)
             .pipe(
                 tap((data) => {
                 console.log("results "+data.id);
@@ -63,7 +88,7 @@ export class ReservationService{
     }
 
     public changeReservationStatus(registrationData:ReservationModel) {
-        return this.http.post<any>(`${RootLocation}${ReservationMS}/reservations/${registrationData.id}`, registrationData)
+        return this.http.post<any>(`${RootLocation}${ReservationMS}reservations/${registrationData.id}`, registrationData)
             .pipe(
                 tap((data) => {
                 console.log("results "+data.id);

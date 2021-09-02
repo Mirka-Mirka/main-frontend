@@ -73,15 +73,19 @@ export class AccommodationDetailsComponent implements OnInit {
 
   }
 
-  async onReserve(){
+  onReserve(){
     const reservation = new ReservationModel({
       price: this.accommodationDetails?.price ? this.accommodationDetails.price : 0,
       propertyId: this.accomodationId,
       numberOfPeople: this.accommodationDetails?.numberOfPeople ? this.accommodationDetails.numberOfPeople : 0,
-      startDate: '',
-      endDate: '',
+      startDate: '2021-09-02T20:19:10.235Z',
+      endDate: '2021-09-04T20:19:10.235Z',
     });
-    await this.reservationService.postReservation(reservation);
-    this.router.navigate([`/accommodation/view-reservations`]);
+    this.reservationService.createReservation(reservation).subscribe(
+      ()=>{
+        this.router.navigate([`/accommodation/view-reservations`]);
+      }
+    );
+    
   }
 }
