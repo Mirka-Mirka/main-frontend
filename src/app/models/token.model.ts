@@ -5,5 +5,5 @@ export class Token {
   constructor(params: Token){
     this.type = params.type;
     this.value = params.value;
-}
+ }
 }

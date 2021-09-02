@@ -41,8 +41,9 @@ import { AccommodationAddComponent } from './accommodation/accommodation-add/acc
 import { AccommodationEditComponent } from './accommodation/accommodation-edit/accommodation-edit.component';
 import {NgModule} from "@angular/core";
 import {MapComponent} from "./map/map.component";
-import { ReservationComponent } from './reservation/reservation.component';
 import { ReservationAddComponent } from './reservation/reservation-add/reservation-add.component';
+import {MatTableModule} from '@angular/material/table';
+import { ReservationComponent } from './reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ReservationAddComponent } from './reservation/reservation-add/reservati
     MatTabsModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTableModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),

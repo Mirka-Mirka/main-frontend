@@ -6,6 +6,10 @@ export const environment = {
   production: false
 };
 export const baseURL = 'http://localhost:8080';
+export const RootLocation = "http://localhost:8765/";
+export const MainBackend = "main-backend/";
+export const ReservationMS = "reservations-microservice/"
+export const ServiceMS = "services-microservice/";
 
 /*
  * For easier debugging in development mode, you can import the following file

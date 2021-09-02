@@ -69,4 +69,8 @@ export class AccommodationDetailsComponent implements OnInit {
   onEditAccommodation(){
 
   }
+
+  onReserve(){
+    this.router.navigate([`/accommodation/view-reservations`]);
+  }
 }
