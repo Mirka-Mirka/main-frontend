@@ -2,14 +2,14 @@ import { AccommodationModel } from './accommodation.model';
 
 export class ReservationModel {
 
-    id:string;
+    id?:string;
     price:number;
     propertyId: number;
     numberOfPeople:number;
     startDate:string;
     endDate:string;
     // propertyResponse : AccommodationModel;
-    reservationStatus : ReservationStatus;
+    reservationStatus? : ReservationStatus;
 
     constructor(params: ReservationModel){
         this.id = params.id;
@@ -31,7 +31,7 @@ export class ReservationCheck{
 }
 
 export enum ReservationStatus {
-    PENDING, 
-    SUCCESSFUL, 
+    PENDING,
+    SUCCESSFUL,
     CANCELED
 }

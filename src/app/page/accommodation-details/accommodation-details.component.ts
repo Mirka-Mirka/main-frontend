@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { AccommodationModel } from 'src/app/models/accommodation.model';
 import { AccommodationService } from 'src/app/services/accommodation.service';
+import {ReservationService} from "../../services/reservation.service";
+import {ReservationModel, ReservationStatus} from "../../models/reservation.model";
 
 @Component({
   selector: 'app-accommodation-details',
@@ -20,6 +22,7 @@ export class AccommodationDetailsComponent implements OnInit {
   public zoom = 15;
 
   constructor(public router: Router, private route: ActivatedRoute,
+    private reservationService: ReservationService,
     private accomodationService: AccommodationService, private toastr: ToastrService, private snackBar:MatSnackBar,) {
     this.accomodationId = this.route.snapshot.params.id;
     this.accomodationService.getAccommodation(this.accomodationId.toString()).subscribe((data) => {
@@ -70,7 +73,15 @@ export class AccommodationDetailsComponent implements OnInit {
 
   }
 
-  onReserve(){
+  async onReserve(){
+    const reservation = new ReservationModel({
+      price: this.accommodationDetails?.price ? this.accommodationDetails.price : 0,
+      propertyId: this.accomodationId,
+      numberOfPeople: this.accommodationDetails?.numberOfPeople ? this.accommodationDetails.numberOfPeople : 0,
+      startDate: '',
+      endDate: '',
+    });
+    await this.reservationService.postReservation(reservation);
     this.router.navigate([`/accommodation/view-reservations`]);
   }
 }
