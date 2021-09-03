@@ -1,12 +1,30 @@
 .table {
     width: 100%;
   }
-  
+.success {
+     padding-top: 10px;
+     padding-bottom: 20px;
+     color: green;
+     font-weight: bold;
+     text-align: center;
+     font-size: 20px;
+  }
+.greenDiv{
+  color: green;
+}
+.redDiv{
+  color: red;
+}
+.blueDiv{
+  color: blue;
+}
+.theader
 .mat-column-naziv {
-    width: 32px;
-    border-right: 1px solid currentColor;
+    width: 300px;
     padding-right: 24px;
     text-align: center;
+    font-weight: bold;
+    font-style: italic;
   }
   
 .mat-column-id {
@@ -19,7 +37,7 @@
   }
   
 .mat-column-numberP {
-    width: 32px;
+    width: 90px;
     text-align: center;
     font-weight: bold;
   }

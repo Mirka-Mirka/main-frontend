@@ -44,6 +44,7 @@ import {MapComponent} from "./map/map.component";
 import { ReservationAddComponent } from './reservation/reservation-add/reservation-add.component';
 import {MatTableModule} from '@angular/material/table';
 import { ReservationComponent } from './reservation/reservation.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { ReservationComponent } from './reservation/reservation.component';
     })
   ],
   providers: [
+    DatePipe,
     MatDatepickerModule,
     MatNativeDateModule
   ],

@@ -9,6 +9,7 @@ import {
 import { ReservationService } from '../services/reservation.service';
 import { UserModel } from '../models/user.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reservation',
@@ -21,10 +22,11 @@ export class ReservationComponent implements OnInit {
   private currentUser: UserModel | null = null;
   private userRole: boolean;
   private managerRole: boolean;
-  displayedColumns: string[] = ['naziv', 'id', 'price', 'numberP'];
+  displayedColumns: string[] = ['naziv','startDate', 'endDate', 'price', 'numberP', 'status'];
   public dataSource = new MatTableDataSource<ReservationModel[]>();
 
   constructor(
+    private date: DatePipe,
     private reservationService: ReservationService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
@@ -32,22 +34,24 @@ export class ReservationComponent implements OnInit {
   ) {
     this.userRole = false;
     this.managerRole = false;
-    //     this.route.queryParams.subscribe(params => {
-    //     this.accomodationId = params["accId"];
-    //     console.log(this.accomodationId);
-    //     console.log(params);
-    // });
-    // this.dataSource.data = eval as any;
+    this.accomodationId =this.route.snapshot.params.id;
+    this.dataSource.data = eval as any;
   }
 
   ngOnInit() {
     this.createPermisions();
-    if (this.accomodationId) {
+    if (this.accomodationId && this.currentUser && this.currentUser.id) {
       if (this.userRole == true) {
         this.reservationService
-          .getUserPropertyReservations(this.accomodationId)
+          .getUserPropertyReservations(this.currentUser.id?.toString())
           .subscribe((res: any) => {
-            this.reservations = res;
+            this.reservations = res.map((data:any) =>{
+              console.log(data);
+              data.startDate = data.startDate.substring(0, 10);
+              data.endDate = data.endDate.substring(0, 10);
+              return data;
+             });
+            this.dataSource.data = res as any;
             console.log(this.reservations);
           });
       } else {

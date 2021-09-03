@@ -46,9 +46,16 @@ export class ReservationService{
         );
     }
 
-    public  getUserPropertyReservations(accomodationId: string) {
-        return this.http.get<any>(`${RootLocation}${ReservationMS}reservations/user/property/` + accomodationId).pipe(
-            tap(() => { }),
+    public  getUserPropertyReservations(userId: string) {
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        
+        return this.http.get<any>(`http://localhost:8765/reservations-microservice/reservations`, httpOptions).pipe(
+            tap((data) => data),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
 

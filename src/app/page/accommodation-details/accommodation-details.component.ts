@@ -83,7 +83,7 @@ export class AccommodationDetailsComponent implements OnInit {
     });
     this.reservationService.createReservation(reservation).subscribe(
       ()=>{
-        this.router.navigate([`/accommodation/view-reservations`]);
+        this.router.navigate([`/accommodation/view-reservations/${this.accomodationId}`]);
       }
     );
     
