@@ -30,7 +30,7 @@ export class AccommodationAddComponent implements OnInit {
   private managerId : string| null= null;
   public accFiles: string[] = [];
   private files: any[] = [];
-
+  public numberOfUploadedFiles: number = 0;
   mapInfo: MapModel | undefined;
 
   constructor(
@@ -141,7 +141,39 @@ export class AccommodationAddComponent implements OnInit {
           }
         });
         console.log(this.postAccommodation);
-        await this.accommodationService.postAccommodation(this.postAccommodation);
+        this.accommodationService.createAccommodation(this.postAccommodation)
+        .subscribe((response: any) => {
+          if (response !== false) {
+            this.snackBar.open("Smestaj je kreiran!", "", { duration: 3000,});
+            const formData = new FormData();
+            this.files.forEach(file => {
+              formData.append('images', file, file.name);
+            });
+            // if(this.files) {
+            //   let size = 0;
+            //   this.files.forEach((file) => {
+            //     size += file.size;
+            //   })
+            //   if(size > 10485759) {
+            //     this.toastr.error('Maximum upload size of 10 MB exceeded', 'Error!');
+            //   } else {
+            //     this.router.navigate(['/registration-admin'], navigationExtras);
+            //   }
+            // } else {
+            //   this.router.navigate(['/registration-admin'], navigationExtras);
+            // }
+            this.accommodationService.addManyImages(response.id, formData)
+              .subscribe((res: any) => {
+                console.log('Slike su uspešno dodate');
+                console.log(res);
+                this.snackBar.open("Slike su uspešno dodate", "", { duration: 3000,});
+                if (res !== false) {
+                  this.router.navigate(['/accommodation']);
+                }
+              });
+          }
+        });
+
         // get accomodation id from response
         // call accomodation service, dodaj novi servis za upload vise slika (prosledi this.files kako je uradjeno na CompanyComponent)
         // await koji ce taj upload raditi
@@ -208,5 +240,6 @@ export class AccommodationAddComponent implements OnInit {
   onFilesUploaded($event: any) {
     console.log('onFilesUploaded');
     this.files = $event;
+    this.numberOfUploadedFiles = this.files.length;
   }
 }

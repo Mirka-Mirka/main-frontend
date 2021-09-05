@@ -21,6 +21,14 @@ export class AccommodationService {
       }),
     };
   }
+  private createHttpOptionsForFiles(token: string): any {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}`,
+      }),
+    };
+  }
 
   public getAccommodationTypes() {
     return this.http.get<any>(`${baseURL}/types`).pipe(
@@ -89,7 +97,7 @@ export class AccommodationService {
 
   public editAccommodation(Id: string, accommodation: AccommodationModel) {
     return this.http
-      .post<any>(`${baseURL}//properties/${Id}`, accommodation)
+      .put<any>(`${baseURL}/properties/${Id}`, accommodation)
       .pipe(
         tap(() => {}),
         catchError((error) => {
@@ -100,12 +108,40 @@ export class AccommodationService {
       );
   }
 
-  public postImages(accommodation: AccommodationModel): Observable<any> {
+  public createAccommodation(accommodation: AccommodationModel): Observable<any> {
+    const getToken = localStorage.getItem('token');
+    let token = null;
+    if (getToken) {
+      token = JSON.parse(getToken);
+    }
+    const httpOptions = this.createHttpOptions(token.value);
     console.log("****");
-    return this.http.post<any>(`${baseURL}/properties`, accommodation).pipe(
+    return this.http.post<any>(`${baseURL}/properties`, accommodation, httpOptions).pipe(
+      tap((data) => { 
+          console.log("Rezultat kreiranog smestaja"); 
+          console.log(data);
+      }),
+      catchError((error) => {
+        this.toastr.error(error.message, 'Greška pri kreiranju aplikacije!');
+
+        return of(false);
+      })
+    );
+  }
+
+  public addManyImages(accommodationId: string, imagesFiles: any): Observable<any> {
+
+    const getToken = localStorage.getItem('token');
+    let token = null;
+    if (getToken) {
+      token = JSON.parse(getToken);
+    }
+    const httpOptions = this.createHttpOptionsForFiles(token.value);
+    console.log("***---***");
+    return this.http.post<any>(`${baseURL}/images/properties/${accommodationId}/many`, imagesFiles, httpOptions).pipe(
       tap(() => { }),
       catchError((error) => {
-        this.toastr.error(error.message, 'Error!');
+        this.toastr.error(error.message, 'Greška pri učitavanju slika!');
 
         return of(false);
       })
