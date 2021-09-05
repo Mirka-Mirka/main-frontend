@@ -109,7 +109,7 @@ export class AccommodationAddComponent implements OnInit {
     });
   }
 
-  addAccommodation() {
+  async addAccommodation() {
       console.log(this.accommodationService);
       if (this.form){
         this.postAccommodation.name = this.form.controls['name'].value;
@@ -141,7 +141,11 @@ export class AccommodationAddComponent implements OnInit {
           }
         });
         console.log(this.postAccommodation);
-        this.accommodationService.postAccommodation(this.postAccommodation);
+        await this.accommodationService.postAccommodation(this.postAccommodation);
+        // get accomodation id from response
+        // call accomodation service, dodaj novi servis za upload vise slika (prosledi this.files kako je uradjeno na CompanyComponent)
+        // await koji ce taj upload raditi
+        // redirect na rezervacije
       }
 
   }
