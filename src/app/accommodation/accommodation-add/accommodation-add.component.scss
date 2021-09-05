@@ -1,51 +1,72 @@
 .acc-add-container {
-    margin-top: 0px;
-    margin-left: 70px;
-    margin-right: 70px;
-    padding-top: 20px;
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.acc-add-content {
+  margin-top: 0px;
+  margin-left: 70px;
+  margin-right: 70px;
+  padding-top: 20px;
+  padding-left: 90px;
+  padding-right: 90px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .left-panel, .right-panel {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 50%;
+    margin-bottom: auto;
   }
+  .right-panel {
+    margin-left: 35px;
+  }
+}
+.buttton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .acc-add-form {
-    align-content: center;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    
-  
-    &-field {
-      margin-top: auto;
-      display: block;
-    }
+  align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &-field {
+    margin-top: auto;
+    display: block;
   }
+}
 .checkbox-section {
-    margin-top: 10px;
-    .checkbox-margin {
-        margin-right: 10px;
-    }
+  margin-top: 10px;
+  .checkbox-margin {
+    margin-right: 10px;
+  }
 }
-.stars{
-    width: 100%;
-    height: 20px;
+.stars {
+  width: 100%;
+  height: 20px;
 }
-.street, .city, .country, .lat, .long{
-  width: 50%; 
+.street,
+.city,
+.country,
+.lat,
+.long {
+  width: 50%;
 }
 
-.find{
+.find {
   margin-bottom: 15px;
   margin-left: 150px;
   margin-right: 150px;
 }
-.selectionDiv{
+.selectionDiv {
   margin-bottom: 10px;
   margin-left: 15px;
 }
-.button{
+.button {
   margin-top: 5%;
   margin-left: 150px;
   margin-right: 150px;

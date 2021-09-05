@@ -25,9 +25,11 @@ export class AccommodationAddComponent implements OnInit {
   public allAccomodationServices: Codebook[] = [];
   private postAccommodation:any = {};
   private starNumber: number | undefined;
-  private currentUser: UserModel | null= null; 
-  private currentToken: Token | null= null; 
+  private currentUser: UserModel | null= null;
+  private currentToken: Token | null= null;
   private managerId : string| null= null;
+  public accFiles: string[] = [];
+  private files: any[] = [];
 
   mapInfo: MapModel | undefined;
 
@@ -37,13 +39,12 @@ export class AccommodationAddComponent implements OnInit {
     public service: AccommodationServiceService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {   
+  ) {
   }
 
   ngOnInit(): void {
     this.fetchAccomTypes();
     this.fetchAccomServices();
-   
   }
 
   fetchAccomTypes(): void {
@@ -104,11 +105,11 @@ export class AccommodationAddComponent implements OnInit {
     this.allAccomodationServices.forEach(item => {
       if(this.form && item.nameEn != undefined){
          this.form.addControl(item.nameEn, new FormControl(''));
-      }  
+      }
     });
   }
 
-  addAccommodation() {  
+  addAccommodation() {
       console.log(this.accommodationService);
       if (this.form){
         this.postAccommodation.name = this.form.controls['name'].value;
@@ -136,8 +137,8 @@ export class AccommodationAddComponent implements OnInit {
             if(this.form.controls[item.nameEn].value){
               this.postAccommodation.services.push(item.id);
             }
-            
-          }   
+
+          }
         });
         console.log(this.postAccommodation);
         this.accommodationService.postAccommodation(this.postAccommodation);
@@ -170,7 +171,7 @@ export class AccommodationAddComponent implements OnInit {
     config.height='700px';
     config.width='700px';
 
-    this.mapInfo = new MapModel(45.242268, 19.842954, 
+    this.mapInfo = new MapModel(45.242268, 19.842954,
     "",
     "" , "" , "");
 
@@ -194,5 +195,14 @@ export class AccommodationAddComponent implements OnInit {
 
   onStarClick(event : number){
       this.starNumber = event + 1;
+  }
+
+  onFileDownloaded($event: any) {
+    console.log('onFileDownloaded');
+  }
+
+  onFilesUploaded($event: any) {
+    console.log('onFilesUploaded');
+    this.files = $event;
   }
 }

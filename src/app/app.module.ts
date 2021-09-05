@@ -46,6 +46,8 @@ import {MatTableModule} from '@angular/material/table';
 import { ReservationComponent } from './reservation/reservation.component';
 import { DatePipe } from '@angular/common';
 import { ReservationAllComponent } from './reservation/reservation-all/reservation-all.component';
+import {DndComponent} from "./components/dnd/dnd.component";
+import {ProgressComponent} from "./components/progress/progress.component";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { ReservationAllComponent } from './reservation/reservation-all/reservati
     MapComponent,
     ReservationComponent,
     ReservationAddComponent,
-    ReservationAllComponent
+    ReservationAllComponent,
+    DndComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
