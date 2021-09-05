@@ -45,6 +45,7 @@ import { ReservationAddComponent } from './reservation/reservation-add/reservati
 import {MatTableModule} from '@angular/material/table';
 import { ReservationComponent } from './reservation/reservation.component';
 import { DatePipe } from '@angular/common';
+import { ReservationAllComponent } from './reservation/reservation-all/reservation-all.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DatePipe } from '@angular/common';
     AccommodationEditComponent,
     MapComponent,
     ReservationComponent,
-    ReservationAddComponent
+    ReservationAddComponent,
+    ReservationAllComponent
   ],
   imports: [
     BrowserModule,

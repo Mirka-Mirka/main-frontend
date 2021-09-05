@@ -59,8 +59,8 @@ export class ReservationComponent implements OnInit {
           .getPropertyReservations(this.accomodationId)
           .subscribe((stream) => {
             // do it this way
-            this.reservations = stream;
-            this.dataSource.data = stream as any;
+            // this.reservations = stream;
+           this.dataSource.data = stream as any;
             console.log(this.reservations);
             // note if you simply put it as 'this.dataSource.data = stream' then TS show you error as '[ts] Type 'string' is not assignable to type '{}[]''
           });

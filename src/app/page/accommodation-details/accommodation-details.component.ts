@@ -6,6 +6,7 @@ import { AccommodationModel } from 'src/app/models/accommodation.model';
 import { AccommodationService } from 'src/app/services/accommodation.service';
 import {ReservationService} from "../../services/reservation.service";
 import {ReservationModel, ReservationStatus} from "../../models/reservation.model";
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-accommodation-details',
@@ -20,13 +21,27 @@ export class AccommodationDetailsComponent implements OnInit {
   public mapLat: number = 45.255;
   public mapLng: number = 19.844722;
   public zoom = 15;
+  private userRole: boolean = false;
+  private managerRole: boolean = false;
+  private guestMode: boolean = false;
+  private currentUser: UserModel | null = null;
 
   constructor(public router: Router, private route: ActivatedRoute,
     private reservationService: ReservationService,
     private accomodationService: AccommodationService, private toastr: ToastrService, private snackBar:MatSnackBar,) {
     this.accomodationId = this.route.snapshot.params.id;
     this.accomodationService.getAccommodation(this.accomodationId.toString()).subscribe((data) => {
-
+  
+      const getLocalItem = localStorage.getItem('currentUser');
+      if (getLocalItem) {
+        this.currentUser = JSON.parse(getLocalItem);
+        if (this.currentUser && this.currentUser?.role == 'USER') {
+          this.userRole = true;
+        } else if (this.currentUser && this.currentUser?.role == 'AGENT') {
+          this.managerRole = true;
+        }
+      }
+      this.guestMode = (this.userRole == false && this.managerRole == false)
       if (data !== false) {
         if (data.imageUrls) {
           this.imageObject = data.imageUrls.map((imageUrl: any) => {
@@ -47,12 +62,37 @@ export class AccommodationDetailsComponent implements OnInit {
         this.hasCoord = false;
         this.mapLat = 45.255;
         this.mapLng = 19.844722;
-        this.toastr.error('Neuspešno prijavljivanje!');
+        this.toastr.error('Neuspešno dobavljanje podataka!');
       }
     });
   }
 
+  createPermisions() {
+    this.userRole = false;
+    this.managerRole = false;
+
+    const getLocalItem = localStorage.getItem('currentUser');
+    if (getLocalItem) {
+      this.currentUser = JSON.parse(getLocalItem);
+      if (this.currentUser && this.currentUser?.role == 'USER') {
+        this.userRole = true;
+      } else if (this.currentUser && this.currentUser?.role == 'AGENT') {
+        this.managerRole = true;
+      }
+    }
+  }
+
   ngOnInit(): void {
+  }
+
+  isManager(){
+    return this.managerRole; 
+  }
+  isUser(){
+    return this.userRole; 
+  }
+  isGuest(){
+    return this.guestMode; 
   }
 
   onDeleteAccommodation(){

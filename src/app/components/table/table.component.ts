@@ -33,7 +33,7 @@ export class TableComponent implements OnInit {
       if (data !== false) {
         this.results = data;
       } else {
-        this.toastr.error('Neuspešno prijavljivanje!');
+        this.toastr.error('Neuspešno dobavljanje podataka!');
       }
     });
   }

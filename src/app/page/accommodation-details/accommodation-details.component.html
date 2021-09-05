@@ -69,15 +69,15 @@
   </div>
 
   <div class ="changeButtons">
-    <a (click)="onReserve()">
+    <a (click)="onReserve()" *ngIf="isUser() || isGuest()">
       <button mat-raised-button color="primary" class="button">Rezerviši</button>
     </a>
-    <!-- <a (click)="onEditAccommodation()">
+     <a (click)="onEditAccommodation()" *ngIf="isManager()">
       <button mat-raised-button color="primary" class="button">Izmeni podatke</button>
     </a>
-    <a (click)="onDeleteAccommodation()">
+    <a (click)="onDeleteAccommodation()" *ngIf="isManager()">
       <button mat-raised-button color="warn" class="button">Izbriši smeštaj</button>
-    </a> -->
+    </a> 
   </div>
 
 

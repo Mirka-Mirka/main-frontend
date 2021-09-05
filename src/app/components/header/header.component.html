@@ -14,12 +14,16 @@
             <div class="divreg" *ngIf="token === null && navigationEnd === '/home'">
                 <button mat-raised-button color="primary" (click)="openRegistrationPage()">Registruj se</button>
             </div>
+            <div class="divrez" *ngIf="token != null && navigationEnd === '/home'">
+                <button mat-raised-button color="primary" (click)="viewReservations()">Moje rezervacije</button>
+            </div>
             <div class="divuser" *ngIf="token != null && isAgent()">
                 <button mat-raised-button color="primary" title="Edit profile" (click)="openUserPage()">{{user?.username}}</button>
             </div>
             <div class="divlout" *ngIf="token != null">
                 <button mat-raised-button color="primary" (click)="logout()">Izloguj se</button>
             </div>
+
         </div>
     </div>
 </div>

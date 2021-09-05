@@ -1,14 +1,10 @@
 <div class="spoljasnjiDiv">
   <div *ngIf="reservations.length != 0">
     <div class='success'>
-      Uspešno ste rezervisali smeštaj!
-    </div>
-    <div class='success'>
-      U naredna 24 časa dobićete potvrdu od vlasnika smeštaja.
-    </div>
-    <div class='success'>
-      Do tada će status vaše rezervacije biti na čekanju.
-    </div>
+      <p>Uspešno ste rezervisali smeštaj!</p>
+      <p> U naredna 24 časa dobićete potvrdu od vlasnika smeštaja.</p>
+     <p>Do tada će status vaše rezervacije biti na čekanju.</p>
+    </div> 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
       <!-- ACCOMMODATION NAME -->
       <ng-container matColumnDef="naziv">

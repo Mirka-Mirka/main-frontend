@@ -24,7 +24,13 @@ export class ReservationService{
     }
 
     public getPropertyReservations(accomodationId: string){
-        return this.http.get<any>(`${RootLocation}${MainBackend}reservations/property/${accomodationId}`).pipe(
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.get<any>(`${RootLocation}${MainBackend}reservations/property/${accomodationId}`, httpOptions).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
@@ -36,7 +42,13 @@ export class ReservationService{
 
 
     public getAccommodations(userId: number | undefined) {
-        return this.http.get<any>(`${RootLocation}${MainBackend}properties` + (userId ? `/${userId}/manager` : '')).pipe(
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.get<any>(`${RootLocation}${MainBackend}properties` + (userId ? `/${userId}/manager` : ''), httpOptions).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');
@@ -83,10 +95,16 @@ export class ReservationService{
     }
 
     public postReservation(registrationData:ReservationModel) {
-        return this.http.post<any>(`${baseURL}/reservations/check/${registrationData.propertyId}`, registrationData)
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.post<any>(`${baseURL}/reservations/check/${registrationData.propertyId}`, registrationData, httpOptions)
             .pipe(
                 tap((data) => {
-                console.log("results "+data.id);
+                console.log(data);
             }),
             catchError(error => {
                 this.toastr.error(error, 'Error!');
@@ -95,10 +113,16 @@ export class ReservationService{
     }
 
     public changeReservationStatus(registrationData:ReservationModel) {
-        return this.http.post<any>(`${RootLocation}${ReservationMS}reservations/${registrationData.id}`, registrationData)
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.post<any>(`${RootLocation}${ReservationMS}reservations/${registrationData.id}`, registrationData, httpOptions)
             .pipe(
                 tap((data) => {
-                console.log("results "+data.id);
+                console.log("results "+data);
             }),
             catchError(error => {
                 this.toastr.error(error, 'Error!');

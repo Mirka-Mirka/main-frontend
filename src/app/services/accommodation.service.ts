@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { baseURL } from 'src/environments/environment';
 import { tap, catchError } from 'rxjs/operators';
@@ -13,6 +13,13 @@ import { Observable } from "rxjs";
 export class AccommodationService {
     constructor(private http: HttpClient, private toastr: ToastrService) { }
 
+    private createHttpOptions(token: string): any {
+        return { headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        })};
+    }
+    
     public getAccommodationTypes() {
         return this.http.get<any>(`${baseURL}/types`).pipe(
             tap(() => { }),
@@ -60,7 +67,13 @@ export class AccommodationService {
     }
 
     public deleteAccommodation(Id: string) {
-        return this.http.delete<any>(`${baseURL}/properties/${Id}`).pipe(
+        const getToken= localStorage.getItem('token');
+        let token = null;
+        if (getToken) {
+          token= JSON.parse(getToken);
+        }
+        const httpOptions = this.createHttpOptions(token.value);
+        return this.http.delete<any>(`${baseURL}/properties/${Id}`, httpOptions).pipe(
             tap(() => { }),
             catchError((error) => {
                 this.toastr.error(error.message, 'Error!');

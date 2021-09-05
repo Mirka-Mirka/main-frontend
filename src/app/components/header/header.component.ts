@@ -49,6 +49,10 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.router.navigate([`/login`]);
   }
 
+  viewReservations(){
+    this.router.navigate([`/accommodation/view-reservations`]);
+  }
+
   openRegistrationPage() {
     this.router.navigate([`/registration`]);
   }
