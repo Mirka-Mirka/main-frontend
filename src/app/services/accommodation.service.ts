@@ -25,7 +25,7 @@ export class AccommodationService {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }),
     };
   }
@@ -146,5 +146,19 @@ export class AccommodationService {
         return of(false);
       })
     );
+  }
+
+  public downloadFile(data: any, fileName: any, contentType: any): void {
+    const blob: Blob = new Blob([data], {type: contentType});
+    const objectUrl: string = URL.createObjectURL(blob);
+    const a: HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+
+    a.href = objectUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();        
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(objectUrl);
   }
 }

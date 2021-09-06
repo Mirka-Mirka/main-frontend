@@ -75,6 +75,9 @@
      <a (click)="onEditAccommodation()" *ngIf="isManager()">
       <button mat-raised-button color="primary" class="button">Izmeni podatke</button>
     </a>
+    <a (click)="onAddImages()" *ngIf="isManager()">
+      <button mat-raised-button color="primary" class="button">Dodaj slike</button>
+    </a>
     <a (click)="onDeleteAccommodation()" *ngIf="isManager()">
       <button mat-raised-button color="warn" class="button">Izbriši smeštaj</button>
     </a> 

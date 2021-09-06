@@ -1,0 +1,19 @@
+<div class="acc-add-container">
+
+      <div class="acc-add-content">
+            <app-dnd style="width: 100%;"
+                     [editMode]="true"
+                     [accFiles]="accFiles"
+                     (filesUploaded)="onFilesUploaded($event)">
+            </app-dnd>
+      </div>
+      <div class="buttton">
+        <button mat-flat-button color="primary"
+          [disabled]="isDisabled()"
+          class="button" mat-raised-button
+          (click)="addImages()">
+          Dodaj slike
+        </button>
+      </div>
+
+</div>

@@ -48,6 +48,8 @@ import { DatePipe } from '@angular/common';
 import { ReservationAllComponent } from './reservation/reservation-all/reservation-all.component';
 import {DndComponent} from "./components/dnd/dnd.component";
 import {ProgressComponent} from "./components/progress/progress.component";
+import { DndDirective } from './components/dnd/dnd.directive';
+import { UploadImagesComponent } from './page/upload-images/upload-images.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import {ProgressComponent} from "./components/progress/progress.component";
     ReservationAddComponent,
     ReservationAllComponent,
     DndComponent,
-    ProgressComponent
+    ProgressComponent, 
+    DndDirective, 
+    UploadImagesComponent
   ],
   imports: [
     BrowserModule,

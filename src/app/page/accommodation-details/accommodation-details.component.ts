@@ -101,11 +101,16 @@ export class AccommodationDetailsComponent implements OnInit {
         console.log('Smeštaj ' + this.accommodationDetails?.name + ' successfuly deleted');
         this.snackBar.open("Smeštaj " + this.accommodationDetails?.name + " je uspešno izbrisan!", "", { duration: 2500,});
         this.ngOnInit();
+        this.router.navigate([`/accommodation`]);
       },
       error=>{
         alert('Smeštaj ' + this.accommodationDetails?.name + ' nije izbrisan! Došlo je do greške');
       console.log(error);}
     );
+  }
+
+  onAddImages(){
+    this.router.navigate([`accommodation/add-images/${this.accomodationId}`]);
   }
 
 

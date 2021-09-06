@@ -164,12 +164,14 @@ export class AccommodationAddComponent implements OnInit {
             // }
             this.accommodationService.addManyImages(response.id, formData)
               .subscribe((res: any) => {
-                console.log('Slike su uspešno dodate');
-                console.log(res);
-                this.snackBar.open("Slike su uspešno dodate", "", { duration: 3000,});
-                if (res !== false) {
-                  this.router.navigate(['/accommodation']);
+                if(res){
+                  console.log(res);
+                  if (res !== false) {
+                    this.snackBar.open("Slike su uspešno dodate", "", { duration: 3000,});
+                    this.router.navigate(['/accommodation']);
+                  }
                 }
+                
               });
           }
         });
@@ -235,6 +237,8 @@ export class AccommodationAddComponent implements OnInit {
 
   onFileDownloaded($event: any) {
     console.log('onFileDownloaded');
+    const file = this.files[$event];
+    this.accommodationService.downloadFile(file, file.name, file.type);
   }
 
   onFilesUploaded($event: any) {
