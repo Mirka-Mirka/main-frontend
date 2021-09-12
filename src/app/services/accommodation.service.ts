@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { baseURL } from 'src/environments/environment';
+import { baseURL, MainBackend, RootLocation } from 'src/environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
@@ -24,7 +24,7 @@ export class AccommodationService {
   private createHttpOptionsForFiles(token: string): any {
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
+      // 'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       }),
     };
@@ -96,8 +96,15 @@ export class AccommodationService {
   }
 
   public editAccommodation(Id: string, accommodation: AccommodationModel) {
+    const getToken = localStorage.getItem('token');
+    let token = null;
+    if (getToken) {
+      token = JSON.parse(getToken);
+    }
+    const httpOptions = this.createHttpOptions(token.value);
+    console.log("****");
     return this.http
-      .put<any>(`${baseURL}/properties/${Id}`, accommodation)
+      .put<any>(`${baseURL}/properties/${Id}`, accommodation, httpOptions)
       .pipe(
         tap(() => {}),
         catchError((error) => {
@@ -138,7 +145,7 @@ export class AccommodationService {
     }
     const httpOptions = this.createHttpOptionsForFiles(token.value);
     console.log("***---***");
-    return this.http.post<any>(`${baseURL}/images/properties/${accommodationId}/many`, imagesFiles, httpOptions).pipe(
+    return this.http.post<any>(`${RootLocation}${MainBackend}images/properties/${accommodationId}/many`, imagesFiles, httpOptions).pipe(
       tap(() => { }),
       catchError((error) => {
         this.toastr.error(error.message, 'Greška pri učitavanju slika!');

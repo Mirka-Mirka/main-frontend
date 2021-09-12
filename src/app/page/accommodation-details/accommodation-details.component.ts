@@ -115,7 +115,7 @@ export class AccommodationDetailsComponent implements OnInit {
 
 
   onEditAccommodation(){
-
+        this.router.navigate([`/accommodation/${this.accomodationId}/edit`])
   }
 
   onReserve(){

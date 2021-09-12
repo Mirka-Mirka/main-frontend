@@ -1,1 +1,185 @@
-<p>accommodation-edit works!</p>
+<div class="acc-add-container">
+    <form class="acc-add-form" *ngIf="form" [formGroup]="form">
+      <div class="acc-add-content">
+        <div class="left-panel"> 
+          <h2>Izmenite podatke o smeštaju</h2>
+  
+          <!-- NAME -->
+          <mat-form-field class="acc-add-form-field" appearance="fill">
+            <mat-label>Naziv</mat-label>
+            <input matInput placeholder="Naziv" formControlName="name" required />
+          </mat-form-field>
+          <!-- PRICE -->
+          <mat-form-field class="acc-add-form-field" appearance="fill">
+            <mat-label>Cena smeštaja</mat-label>
+            <input matInput placeholder="Cena" formControlName="price" required />
+          </mat-form-field>
+          <!-- DESCRIPTION -->
+          <mat-form-field class="acc-add-form-field" appearance="fill">
+            <mat-label>Informacije o smeštaju</mat-label>
+            <input
+              matInput
+              placeholder="Opis"
+              formControlName="description"
+              required
+            />
+          </mat-form-field>
+          <!-- ACCOMMODATION TYPE -->
+          <mat-form-field appearance="fill" class="left-form-field">
+            <mat-label>Izaberite tip smeštaja</mat-label>
+            <mat-select formControlName="accommondationType">
+              <div *ngFor="let type of accommodationTypeMenu">
+                <mat-option [value]="type.id">{{ type.name }}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+          <!-- STARS -->
+          <span class="stars">
+            <app-stars (starNumberEvent)="onStarClick($event)"></app-stars>
+          </span>
+  
+          <!-- ADDITIONS -->
+          <div class="selectionDiv">
+            <section
+              class="checkbox-section"
+              *ngFor="let item of allAccomodationServices; let i = index"
+            >
+              <mat-checkbox
+                *ngIf="item.nameEn != undefined"
+                class="checkbox-margin"
+                [formControlName]="item.nameEn"
+                [name]="item.name"
+              >
+                {{ item.name }}
+              </mat-checkbox>
+            </section>
+          </div>
+  
+          <!-- CANCELLATION DAYS -->
+          <mat-form-field class="acc-add-form-field" appearance="fill">
+            <mat-label>Besplatno otkazivanje ukoliko se izvrši </mat-label>
+            <input
+              matInput
+              placeholder="0"
+              formControlName="numberOfCancellationDays"
+              required
+            />
+            <span>dana pre zakazanog termina</span>
+          </mat-form-field>
+          <!-- PEOPLE NUMBER -->
+          <mat-form-field class="acc-add-form-field" appearance="fill">
+            <mat-label>Predvidjeno za </mat-label>
+            <input
+              matInput
+              placeholder="2"
+              formControlName="numberOfPeople"
+              required
+            />
+            <span>osoba</span>
+          </mat-form-field>
+  
+          <div>
+            Adresa
+            <!-- STREET-->
+            <div class="address">
+              <mat-form-field
+                class="registration-form-field street"
+                appearance="fill"
+              >
+                <mat-label>Ulica</mat-label>
+                <input
+                  matInput
+                  placeholder="Ulica"
+                  formControlName="street"
+                  required
+                />
+              </mat-form-field>
+              <!-- CITY -->
+              <mat-form-field
+                class="registration-form-field city"
+                appearance="fill"
+              >
+                <mat-label>Mesto</mat-label>
+                <input
+                  matInput
+                  placeholder="Mesto"
+                  formControlName="city"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <!-- COUNTRY-->
+            <div class="address">
+              <mat-form-field
+                class="registration-form-field country"
+                appearance="fill"
+              >
+                <mat-label>Država</mat-label>
+                <input
+                  matInput
+                  placeholder="Država"
+                  formControlName="country"
+                  required
+                />
+              </mat-form-field>
+              <!-- MAP location-->
+              <button class="find" mat-raised-button (click)="openMapAdd()">
+                Nadji lokaciju na mapi
+              </button>
+            </div>
+  
+            <!-- LATITUDE-->
+            <div class="address">
+              <mat-form-field
+                class="registration-form-field lat"
+                appearance="fill"
+              >
+                <mat-label>Geografska širina</mat-label>
+                <input
+                  matInput
+                  placeholder="Geografska širina"
+                  formControlName="latitude"
+                  required
+                />
+              </mat-form-field>
+  
+              <!-- LONGITUDE-->
+              <mat-form-field
+                class="registration-form-field long"
+                appearance="fill"
+              >
+                <mat-label>Geografska dužina</mat-label>
+                <input
+                  matInput
+                  placeholder="Geografska dužina"
+                  formControlName="longitude"
+                  required
+                />
+              </mat-form-field>
+            </div>
+          </div>
+       </div>
+         <div class="right-panel">
+          <!-- <app-dnd style="width: 100%;"
+                   [editMode]="true"
+                   [accFiles]="accFiles"
+                   (filesUploaded)="onFilesUploaded($event)"
+                   (fileForDownload)="onFileDownloaded($event)"></app-dnd> -->
+        </div>
+      </div>
+      <div class="buttton">
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!form.valid"
+          class="button"
+          mat-raised-button
+          color="primary"
+          (click)="editAccom()"
+        >
+          Sačuvaj podatke
+        </button>
+      </div>
+    </form>
+  </div>
+  

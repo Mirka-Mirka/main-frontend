@@ -144,7 +144,7 @@ export class AccommodationAddComponent implements OnInit {
         this.accommodationService.createAccommodation(this.postAccommodation)
         .subscribe((response: any) => {
           if (response !== false) {
-            this.snackBar.open("Smestaj je kreiran!", "", { duration: 3000,});
+            this.snackBar.open("Smeštaj je kreiran!", "", { duration: 3000,});
             const formData = new FormData();
             this.files.forEach(file => {
               formData.append('images', file, file.name);
